@@ -1,0 +1,125 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+enum UserRole {
+  admin
+  member
+}
+
+enum CategoryKind {
+  fixed
+  variable
+  leisure
+}
+
+enum RecordType {
+  expense
+  bill
+  subscription
+  maintenance
+}
+
+model Household {
+  id         String     @id @default(uuid())
+  name       String
+  createdAt  DateTime   @default(now())
+  users      User[]
+  categories Category[]
+  
+  // --- ADD THIS LINE FOR PHASE 4 ---
+  reminders  Reminder[] // <--- เพิ่มบรรทัดนี้ เพื่อบอกว่า 1 บ้านมีหลายแจ้งเตือนได้
+
+  @@map("households")
+}
+
+model User {
+  id          String    @id @default(uuid())
+  name        String
+  email       String    @unique
+  role        UserRole
+  householdId String
+  household   Household @relation(fields: [householdId], references: [id])
+  records     Record[]
+  
+  // --- ADD THIS LINE FOR PHASE 4 ---
+  reminders   Reminder[] // <--- เพิ่มบรรทัดนี้ เพื่อบอกว่า 1 คนมีหลายแจ้งเตือนได้
+
+  @@index([householdId])
+  @@map("users")
+}
+
+model Category {
+  id          String       @id @default(uuid())
+  name        String
+  kind        CategoryKind
+  householdId String
+  household   Household    @relation(fields: [householdId], references: [id])
+  records     Record[]
+
+  @@index([householdId])
+  @@map("categories")
+}
+
+model Record {
+  id            String     @id @default(uuid())
+  amount        Float
+  recordDate    DateTime
+  title         String
+  type          RecordType
+  
+  // --- PHASE 3 ADDITIONS ---
+  slipUrl       String?    // Where the image is stored (e.g., AWS S3 or Vercel Blob)
+  bankReference String?    @unique // Extracted from Thai QR to prevent duplicate scans
+  isAutoParsed  Boolean    @default(false) // Flags if AI/QR created this vs manual entry
+  
+  userId        String
+  categoryId    String
+  user          User       @relation(fields: [userId], references: [id])
+  category      Category   @relation(fields: [categoryId], references: [id])
+
+  @@index([userId])
+  @@index([categoryId])
+  @@map("records")
+}
+
+enum ReminderType {
+  maintenance
+  passport
+  bill
+  subscription
+}
+
+enum ReminderStatus {
+  pending
+  completed
+  dismissed
+}
+
+model Reminder {
+  id              String         @id @default(uuid())
+  title           String         // e.g., "Renew Passport", "Clean AC"
+  type            ReminderType
+  dueDate         DateTime       // The exact date the cron job checks against
+  status          ReminderStatus @default(pending)
+  
+  // --- RECURRENCE LOGIC ---
+  isRecurring     Boolean        @default(false)
+  intervalMonths  Int?           // e.g., 6 for half-yearly maintenance, 120 for 10-year passports
+  
+  // --- RELATIONS ---
+  userId          String         // E.g., Whose passport is it?
+  householdId     String         
+  
+  user            User           @relation(fields: [userId], references: [id])
+  household       Household      @relation(fields: [householdId], references: [id])
+
+  @@index([dueDate])             // Crucial: Speeds up the daily cron job query!
+  @@index([householdId])
+  @@index([userId])
+  @@map("reminders")
+}
