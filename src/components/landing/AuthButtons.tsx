@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
-import type { Dictionary } from "@/lib/dictionaries";
+import type { Dictionary } from "@/lib/get-dictionary";
 
 type AuthButtonsProps = {
-  dictionary: Dictionary["landing"]["auth"];
+  dictionary: Dictionary;
 };
 
 export function AuthButtons({ dictionary }: AuthButtonsProps) {

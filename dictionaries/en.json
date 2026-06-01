@@ -1,0 +1,16 @@
+{
+  "signIn": "Sign In",
+  "signUp": "Sign Up",
+  "email": "Email",
+  "password": "Password",
+  "welcome": "Welcome",
+  "landing": {
+    "nav": {
+      "logo": "KeepLife"
+    },
+    "hero": {
+      "title": "KeepLife",
+      "slogan": "Your home, payments, and reminders in one calm place."
+    }
+  }
+}

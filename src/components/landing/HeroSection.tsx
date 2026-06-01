@@ -1,4 +1,4 @@
-import type { Dictionary } from "@/lib/dictionaries";
+import type { Dictionary } from "@/lib/get-dictionary";
 
 type HeroSectionProps = {
   dictionary: Dictionary["landing"]["hero"];

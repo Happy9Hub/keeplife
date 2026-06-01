@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 
 import { HeroSection } from "@/components/landing/HeroSection";
 import { Navbar } from "@/components/landing/Navbar";
-import { getDictionary } from "@/lib/dictionaries";
+import { getDictionary } from "@/lib/get-dictionary";
 import { isLocale } from "@/lib/i18n";
 
 export default async function LandingPage({
@@ -16,11 +16,11 @@ export default async function LandingPage({
     notFound();
   }
 
-  const dictionary = getDictionary(locale);
+  const dictionary = await getDictionary(locale);
 
   return (
     <main className="relative flex min-h-screen flex-col bg-white">
-      <Navbar dictionary={dictionary.landing} locale={locale} />
+      <Navbar dictionary={dictionary} locale={locale} />
       <HeroSection dictionary={dictionary.landing.hero} />
     </main>
   );

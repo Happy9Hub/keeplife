@@ -30,32 +30,75 @@ model Household {
   createdAt  DateTime   @default(now())
   users      User[]
   categories Category[]
-  
-  // --- ADD THIS LINE FOR PHASE 4 ---
-  reminders  Reminder[] // <--- เพิ่มบรรทัดนี้ เพื่อบอกว่า 1 บ้านมีหลายแจ้งเตือนได้
+  reminders  Reminder[]
 
   @@map("households")
 }
 
 model User {
-  id          String    @id @default(uuid())
-  name        String
-  email       String    @unique
-  role        UserRole
-  householdId String
-  household   Household @relation(fields: [householdId], references: [id])
-  records     Record[]
-  
-  // --- ADD THIS LINE FOR PHASE 4 ---
-  reminders   Reminder[] // <--- เพิ่มบรรทัดนี้ เพื่อบอกว่า 1 คนมีหลายแจ้งเตือนได้
+  id            String     @id @default(uuid())
+  name          String
+  email         String     @unique
+  emailVerified DateTime?
+  image         String?
+  passwordHash  String?
+  role          UserRole
+  householdId   String
+  household     Household  @relation(fields: [householdId], references: [id])
+  records       Record[]
+  reminders     Reminder[]
+  accounts      Account[]
+  sessions      Session[]
 
   @@index([householdId])
   @@map("users")
 }
 
+model Account {
+  id                String  @id @default(uuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([token])
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
 model Category {
   id          String       @id @default(uuid())
-  name        String
+  nameEn      String
+  nameTh      String
   kind        CategoryKind
   householdId String
   household   Household    @relation(fields: [householdId], references: [id])
@@ -71,12 +114,9 @@ model Record {
   recordDate    DateTime
   title         String
   type          RecordType
-  
-  // --- PHASE 3 ADDITIONS ---
-  slipUrl       String?    // Where the image is stored (e.g., AWS S3 or Vercel Blob)
-  bankReference String?    @unique // Extracted from Thai QR to prevent duplicate scans
-  isAutoParsed  Boolean    @default(false) // Flags if AI/QR created this vs manual entry
-  
+  slipUrl       String?
+  bankReference String?    @unique
+  isAutoParsed  Boolean    @default(false)
   userId        String
   categoryId    String
   user          User       @relation(fields: [userId], references: [id])
@@ -101,24 +141,19 @@ enum ReminderStatus {
 }
 
 model Reminder {
-  id              String         @id @default(uuid())
-  title           String         // e.g., "Renew Passport", "Clean AC"
-  type            ReminderType
-  dueDate         DateTime       // The exact date the cron job checks against
-  status          ReminderStatus @default(pending)
-  
-  // --- RECURRENCE LOGIC ---
-  isRecurring     Boolean        @default(false)
-  intervalMonths  Int?           // e.g., 6 for half-yearly maintenance, 120 for 10-year passports
-  
-  // --- RELATIONS ---
-  userId          String         // E.g., Whose passport is it?
-  householdId     String         
-  
-  user            User           @relation(fields: [userId], references: [id])
-  household       Household      @relation(fields: [householdId], references: [id])
+  id             String         @id @default(uuid())
+  title          String
+  type           ReminderType
+  dueDate        DateTime
+  status         ReminderStatus @default(pending)
+  isRecurring    Boolean        @default(false)
+  intervalMonths Int?
+  userId         String
+  householdId    String
+  user           User           @relation(fields: [userId], references: [id])
+  household      Household      @relation(fields: [householdId], references: [id])
 
-  @@index([dueDate])             // Crucial: Speeds up the daily cron job query!
+  @@index([dueDate])
   @@index([householdId])
   @@index([userId])
   @@map("reminders")
