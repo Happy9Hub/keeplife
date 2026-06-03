@@ -4,6 +4,30 @@
   "email": "Email",
   "password": "Password",
   "welcome": "Welcome",
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "welcome": "Welcome",
+    "signUpTitle": "Create your account",
+    "signUpSubtitle": "Start organizing your household in a calm, simple way.",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "householdName": "Household name",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "you@example.com",
+    "passwordPlaceholder": "At least 8 characters",
+    "householdNamePlaceholder": "Leave blank to create a new household",
+    "submit": "Create account",
+    "submitting": "Creating account...",
+    "continueWithGoogle": "Continue with Google",
+    "continueWithEmail": "Continue with Email",
+    "googleUnavailable": "Google sign-in is not configured yet.",
+    "or": "OR",
+    "successMessage": "Account created successfully.",
+    "alreadyHaveAccount": "Already have an account?",
+    "signInLink": "Sign in"
+  },
   "landing": {
     "nav": {
       "logo": "KeepLife"

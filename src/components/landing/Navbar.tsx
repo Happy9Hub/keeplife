@@ -17,7 +17,7 @@ export function Navbar({ dictionary, locale }: NavbarProps) {
         </h1>
         <div className="flex items-center gap-3">
           <LanguageSwitcher locale={locale} />
-          <AuthButtons dictionary={dictionary} />
+          <AuthButtons dictionary={dictionary} locale={locale} />
         </div>
       </div>
     </header>

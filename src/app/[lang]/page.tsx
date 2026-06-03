@@ -8,19 +8,19 @@ import { isLocale } from "@/lib/i18n";
 export default async function LandingPage({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ lang: string }>;
 }) {
-  const { locale } = await params;
+  const { lang } = await params;
 
-  if (!isLocale(locale)) {
+  if (!isLocale(lang)) {
     notFound();
   }
 
-  const dictionary = await getDictionary(locale);
+  const dictionary = await getDictionary(lang);
 
   return (
     <main className="relative flex min-h-screen flex-col bg-white">
-      <Navbar dictionary={dictionary} locale={locale} />
+      <Navbar dictionary={dictionary} locale={lang} />
       <HeroSection dictionary={dictionary.landing.hero} />
     </main>
   );

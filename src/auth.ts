@@ -1,10 +1,14 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import Google from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import type { UserRole } from "@prisma/client";
 import { compare } from "bcryptjs";
 
 import { prisma } from "@/lib/prisma";
+
+const googleClientId = process.env.AUTH_GOOGLE_ID;
+const googleClientSecret = process.env.AUTH_GOOGLE_SECRET;
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -12,6 +16,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     strategy: "jwt", // JWT is required for Credentials provider
   },
   providers: [
+    ...(googleClientId && googleClientSecret
+      ? [
+          Google({
+            clientId: googleClientId,
+            clientSecret: googleClientSecret,
+          }),
+        ]
+      : []),
     Credentials({
       credentials: {
         email: { label: "Email", type: "email" },
@@ -79,7 +91,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           session.user.role = token.role satisfies UserRole;
         }
 
-        if (typeof token.householdId === "string") {
+        if (typeof token.householdId === "string" || token.householdId === null) {
           session.user.householdId = token.householdId;
         }
       }

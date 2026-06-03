@@ -37,14 +37,14 @@ model Household {
 
 model User {
   id            String     @id @default(uuid())
-  name          String
+  name          String?
   email         String     @unique
   emailVerified DateTime?
   image         String?
   passwordHash  String?
-  role          UserRole
-  householdId   String
-  household     Household  @relation(fields: [householdId], references: [id])
+  role          UserRole   @default(member)
+  householdId   String?
+  household     Household? @relation(fields: [householdId], references: [id])
   records       Record[]
   reminders     Reminder[]
   accounts      Account[]

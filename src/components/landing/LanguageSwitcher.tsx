@@ -3,22 +3,29 @@
 import { usePathname, useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
-import { getOppositeLocale, type Locale } from "@/lib/i18n";
+import { defaultLocale, getOppositeLocale, isLocale, type Locale } from "@/lib/i18n";
 
 type LanguageSwitcherProps = {
-  locale: Locale;
+  locale?: Locale;
 };
 
 export function LanguageSwitcher({ locale }: LanguageSwitcherProps) {
   const pathname = usePathname();
   const router = useRouter();
-  const nextLocale = getOppositeLocale(locale);
+  const currentPathLocale = pathname.split("/")[1];
+  const currentLocale = isLocale(currentPathLocale)
+    ? currentPathLocale
+    : (locale ?? defaultLocale);
+  const nextLocale = getOppositeLocale(currentLocale);
   const label = nextLocale.toUpperCase();
 
   function switchLanguage() {
     const segments = pathname.split("/");
     segments[1] = nextLocale;
-    router.push(segments.join("/") || `/${nextLocale}`);
+    const nextPathname = segments.join("/") || `/${nextLocale}`;
+    const queryString = window.location.search;
+
+    router.push(`${nextPathname}${queryString}`);
   }
 
   return (

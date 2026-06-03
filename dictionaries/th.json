@@ -4,6 +4,30 @@
   "email": "อีเมล",
   "password": "รหัสผ่าน",
   "welcome": "ยินดีต้อนรับ",
+  "auth": {
+    "signIn": "เข้าสู่ระบบ",
+    "signUp": "สมัครใช้งาน",
+    "welcome": "ยินดีต้อนรับ",
+    "signUpTitle": "สร้างบัญชีของคุณ",
+    "signUpSubtitle": "เริ่มจัดการเรื่องในบ้านอย่างเรียบง่ายและสบายใจ",
+    "name": "ชื่อ",
+    "email": "อีเมล",
+    "password": "รหัสผ่าน",
+    "householdName": "ชื่อบ้าน",
+    "namePlaceholder": "ชื่อของคุณ",
+    "emailPlaceholder": "you@example.com",
+    "passwordPlaceholder": "อย่างน้อย 8 ตัวอักษร",
+    "householdNamePlaceholder": "เว้นว่างไว้เพื่อสร้างบ้านใหม่",
+    "submit": "สร้างบัญชี",
+    "submitting": "กำลังสร้างบัญชี...",
+    "continueWithGoogle": "ดำเนินการต่อด้วย Google",
+    "continueWithEmail": "ดำเนินการต่อด้วยอีเมล",
+    "googleUnavailable": "ยังไม่ได้ตั้งค่าเข้าสู่ระบบด้วย Google",
+    "or": "หรือ",
+    "successMessage": "สร้างบัญชีสำเร็จ",
+    "alreadyHaveAccount": "มีบัญชีอยู่แล้ว?",
+    "signInLink": "เข้าสู่ระบบ"
+  },
   "landing": {
     "nav": {
       "logo": "KeepLife"

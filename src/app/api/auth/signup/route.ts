@@ -30,9 +30,9 @@ export async function POST(request: Request) {
     const password = normalizeString(body.password);
     const householdName = normalizeString(body.householdName);
 
-    if (!name || !email || !password) {
+    if (!email || !password) {
       return NextResponse.json(
-        { error: "Name, email, and password are required." },
+        { error: "Email and password are required." },
         { status: 400 },
       );
     }
@@ -72,7 +72,7 @@ export async function POST(request: Request) {
 
         return tx.user.create({
           data: {
-            name,
+            name: name ?? null,
             email,
             passwordHash,
             role: "member",
@@ -88,16 +88,17 @@ export async function POST(request: Request) {
         });
       }
 
+      const displayName = name ?? email.split("@")[0];
       const household = await tx.household.create({
         data: {
-          name: `${name}'s Household`,
+          name: `${displayName}'s Household`,
         },
         select: { id: true },
       });
 
       return tx.user.create({
         data: {
-          name,
+          name: name ?? null,
           email,
           passwordHash,
           role: "admin",

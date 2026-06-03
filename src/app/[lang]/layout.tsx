@@ -11,24 +11,24 @@ export const metadata: Metadata = {
 };
 
 export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+  return locales.map((lang) => ({ lang }));
 }
 
-export default async function LocaleLayout({
+export default async function LangLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: Promise<{ lang: string }>;
 }) {
-  const { locale } = await params;
+  const { lang } = await params;
 
-  if (!isLocale(locale)) {
+  if (!isLocale(lang)) {
     notFound();
   }
 
   return (
-    <html lang={locale} className="h-full antialiased">
+    <html lang={lang} className="h-full antialiased">
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
