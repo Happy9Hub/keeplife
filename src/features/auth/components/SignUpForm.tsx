@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -20,6 +20,8 @@ import {
   signUpSchema,
   type SignUpFormValues,
 } from "@/features/auth/schemas/auth.schema";
+import { authClient } from "@/lib/auth-client";
+import type { Locale } from "@/lib/i18n";
 
 type SignUpFormDictionary = {
   email: string;
@@ -37,13 +39,16 @@ type SignUpFormDictionary = {
 type SignUpFormProps = {
   dict: SignUpFormDictionary;
   isGoogleEnabled: boolean;
+  lang: Locale;
 };
 
-export function SignUpForm({ dict, isGoogleEnabled }: SignUpFormProps) {
+export function SignUpForm({ dict, isGoogleEnabled, lang }: SignUpFormProps) {
+  const router = useRouter();
   const [statusMessage, setStatusMessage] = useState<{
     tone: "success" | "error";
     text: string;
   } | null>(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const form = useForm<SignUpFormValues>({
     resolver: zodResolver(signUpSchema),
@@ -53,7 +58,7 @@ export function SignUpForm({ dict, isGoogleEnabled }: SignUpFormProps) {
     },
   });
 
-  const isSubmitting = form.formState.isSubmitting;
+  const isSubmitting = form.formState.isSubmitting || isTransitioning;
 
   function handleGoogleSignIn() {
     if (!isGoogleEnabled) {
@@ -64,36 +69,36 @@ export function SignUpForm({ dict, isGoogleEnabled }: SignUpFormProps) {
       return;
     }
 
-    void signIn("google");
+    void authClient.signIn.social({
+      provider: "google",
+      callbackURL: `/${lang}/onboarding`,
+      newUserCallbackURL: `/${lang}/onboarding`,
+    });
   }
 
   async function onSubmit(values: SignUpFormValues) {
     setStatusMessage(null);
+    const name = values.email.split("@")[0] || values.email;
 
     try {
-      const response = await fetch("/api/auth/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
+      const signUpResult = await authClient.signUp.email({
+        email: values.email,
+        password: values.password,
+        name,
       });
 
-      if (!response.ok) {
-        const body = (await response.json().catch(() => null)) as { error?: string } | null;
+      if (signUpResult.error) {
         setStatusMessage({
           tone: "error",
-          text: body?.error ?? "Unable to create account.",
+          text: signUpResult.error.message ?? "Unable to create account.",
         });
         return;
       }
 
-      form.reset();
-      setStatusMessage({
-        tone: "success",
-        text: dict.successMessage ?? "Account created successfully.",
-      });
+      setIsTransitioning(true);
+      router.push(`/${lang}/onboarding`);
     } catch {
+      setIsTransitioning(false);
       setStatusMessage({
         tone: "error",
         text: "Unable to create account.",

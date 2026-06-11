@@ -34,7 +34,7 @@ export default async function SignUpPage({ params }: SignUpPageProps) {
           <p className="text-sm leading-6 text-zinc-500">{dictionary.auth.signUpSubtitle}</p>
         </div>
 
-        <SignUpForm dict={dictionary.auth} isGoogleEnabled={isGoogleEnabled} />
+        <SignUpForm dict={dictionary.auth} isGoogleEnabled={isGoogleEnabled} lang={lang} />
 
         <p className="mt-6 text-sm text-zinc-500">
           {dictionary.auth.alreadyHaveAccount}{" "}

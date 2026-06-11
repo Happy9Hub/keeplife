@@ -28,6 +28,17 @@
     "alreadyHaveAccount": "Already have an account?",
     "signInLink": "Sign in"
   },
+  "onboarding": {
+    "title": "Complete your setup",
+    "subtitle": "Tell us who you are and name your household.",
+    "name": "Your Name",
+    "householdName": "Household Name",
+    "namePlaceholder": "Your name",
+    "householdNamePlaceholder": "e.g. Smith Family",
+    "completeSetup": "Complete Setup",
+    "submitting": "Completing setup...",
+    "errorMessage": "Unable to complete setup."
+  },
   "landing": {
     "nav": {
       "logo": "KeepLife"

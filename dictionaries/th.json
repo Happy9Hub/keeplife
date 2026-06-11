@@ -28,6 +28,17 @@
     "alreadyHaveAccount": "มีบัญชีอยู่แล้ว?",
     "signInLink": "เข้าสู่ระบบ"
   },
+  "onboarding": {
+    "title": "ตั้งค่าให้เรียบร้อย",
+    "subtitle": "บอกชื่อของคุณและตั้งชื่อบ้านของคุณ",
+    "name": "ชื่อของคุณ",
+    "householdName": "ชื่อบ้าน",
+    "namePlaceholder": "ชื่อของคุณ",
+    "householdNamePlaceholder": "เช่น บ้านครอบครัวสมิธ",
+    "completeSetup": "ตั้งค่าให้เสร็จ",
+    "submitting": "กำลังตั้งค่า...",
+    "errorMessage": "ไม่สามารถตั้งค่าให้เสร็จได้"
+  },
   "landing": {
     "nav": {
       "logo": "KeepLife"
