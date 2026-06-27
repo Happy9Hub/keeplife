@@ -25,7 +25,9 @@
     "googleUnavailable": "Google sign-in is not configured yet.",
     "or": "OR",
     "successMessage": "Account created successfully.",
+    "invalidEmailOrPassword": "Invalid email or password.",
     "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?",
     "signInLink": "Sign in"
   },
   "onboarding": {

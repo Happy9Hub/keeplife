@@ -1,8 +1,20 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KeepLife
+
+KeepLife is a household finance & reminders app: shared expense tracking, bills/subscriptions,
+and maintenance/passport-style reminders for a household with multiple users.
+
+Built with Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Prisma 7 against
+MariaDB, and better-auth for authentication.
 
 ## Getting Started
 
-First, run the development server:
+Start the database (see `docker-compose.yml`):
+
+```bash
+docker compose up -d
+```
+
+Then run the development server:
 
 ```bash
 npm run dev

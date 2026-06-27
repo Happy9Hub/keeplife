@@ -25,7 +25,9 @@
     "googleUnavailable": "ยังไม่ได้ตั้งค่าเข้าสู่ระบบด้วย Google",
     "or": "หรือ",
     "successMessage": "สร้างบัญชีสำเร็จ",
+    "invalidEmailOrPassword": "อีเมลหรือรหัสผ่านไม่ถูกต้อง",
     "alreadyHaveAccount": "มีบัญชีอยู่แล้ว?",
+    "dontHaveAccount": "ยังไม่มีบัญชี?",
     "signInLink": "เข้าสู่ระบบ"
   },
   "onboarding": {
