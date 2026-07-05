@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { auth } from "@/auth";
+import { DEFAULT_CATEGORIES } from "@/features/household/default-categories";
 import { prisma } from "@/lib/prisma";
 
 type OnboardingBody = {
@@ -56,6 +57,13 @@ async function handleOnboarding(request: Request) {
           id: true,
           name: true,
         },
+      });
+
+      await tx.category.createMany({
+        data: DEFAULT_CATEGORIES.map((category) => ({
+          ...category,
+          householdId: household.id,
+        })),
       });
 
       const membership = await tx.householdMember.create({
