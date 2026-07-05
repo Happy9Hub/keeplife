@@ -39,6 +39,14 @@ export default async function SignInPage({
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-white px-6 py-16">
+      <div className="absolute left-4 top-4 sm:left-6 sm:top-6">
+        <Link
+          className="text-lg font-bold tracking-tight text-zinc-950 transition hover:opacity-80"
+          href={`/${lang}`}
+        >
+          {dictionary.landing.nav.logo}
+        </Link>
+      </div>
       <div className="absolute right-4 top-4 sm:right-6 sm:top-6">
         <LanguageSwitcher locale={lang} />
       </div>

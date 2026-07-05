@@ -29,7 +29,7 @@ export function SignOutButton({
     setIsSigningOut(true);
 
     await authClient.signOut();
-    router.push(`/${locale}/signin`);
+    router.push(`/${locale}`);
     router.refresh();
   }
 

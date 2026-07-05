@@ -41,6 +41,13 @@
     "submitting": "Completing setup...",
     "errorMessage": "Unable to complete setup."
   },
+  "dashboard": {
+    "title": "Dashboard",
+    "greeting": "Welcome back,",
+    "comingSoon": "Expense tracking and reminders are coming soon.",
+    "householdLabel": "Household",
+    "signOut": "Sign out"
+  },
   "landing": {
     "nav": {
       "logo": "KeepLife"

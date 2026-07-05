@@ -41,6 +41,13 @@
     "submitting": "กำลังตั้งค่า...",
     "errorMessage": "ไม่สามารถตั้งค่าให้เสร็จได้"
   },
+  "dashboard": {
+    "title": "แดชบอร์ด",
+    "greeting": "ยินดีต้อนรับกลับมา",
+    "comingSoon": "ระบบบันทึกค่าใช้จ่ายและการแจ้งเตือนกำลังจะมาเร็ว ๆ นี้",
+    "householdLabel": "บ้าน",
+    "signOut": "ออกจากระบบ"
+  },
   "landing": {
     "nav": {
       "logo": "KeepLife"
