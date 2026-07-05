@@ -58,26 +58,37 @@ async function handleOnboarding(request: Request) {
         },
       });
 
+      const membership = await tx.householdMember.create({
+        data: {
+          userId,
+          householdId: household.id,
+          role: "ADMIN",
+        },
+        select: {
+          id: true,
+          role: true,
+        },
+      });
+
       const user = await tx.user.update({
         where: {
           id: userId,
         },
         data: {
           name,
-          householdId: household.id,
-          role: "admin",
+          activeHouseholdId: household.id,
         },
         select: {
           id: true,
           name: true,
           email: true,
-          role: true,
-          householdId: true,
+          activeHouseholdId: true,
         },
       });
 
       return {
         household,
+        membership,
         user,
       };
     });

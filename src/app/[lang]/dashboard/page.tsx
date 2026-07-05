@@ -17,7 +17,7 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
     redirect(`/${lang}/signin`);
   }
 
-  if (!session.user.householdId) {
+  if (!session.user.activeHouseholdId) {
     redirect(`/${lang}/onboarding`);
   }
 

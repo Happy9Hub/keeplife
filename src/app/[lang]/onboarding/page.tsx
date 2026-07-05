@@ -27,7 +27,7 @@ export default async function OnboardingPage({ params }: OnboardingPageProps) {
     redirect(`/${lang}/signup`);
   }
 
-  if (session.user.householdId) {
+  if (session.user.activeHouseholdId) {
     redirect(`/${lang}/dashboard`);
   }
 

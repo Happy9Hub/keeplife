@@ -28,13 +28,10 @@ export const auth = betterAuth({
   },
   user: {
     additionalFields: {
-      role: {
-        type: "string",
-        required: false,
-        defaultValue: "member",
-        input: false,
-      },
-      householdId: {
+      // Which household is currently in context for this user. Role now lives
+      // per-membership on HouseholdMember, so it is no longer a user-level field.
+      // Set via app logic (onboarding / household switch), not the auth API.
+      activeHouseholdId: {
         type: "string",
         required: false,
         input: false,
@@ -44,20 +41,6 @@ export const auth = betterAuth({
         required: false,
         input: false,
         returned: false,
-      },
-    },
-  },
-  databaseHooks: {
-    user: {
-      create: {
-        before: async (user) => ({
-          data: {
-            ...user,
-            role: user.role ?? "member",
-            householdId: null,
-            passwordHash: null,
-          },
-        }),
       },
     },
   },
