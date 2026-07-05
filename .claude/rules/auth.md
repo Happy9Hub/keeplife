@@ -17,7 +17,8 @@ been fully removed (package, routes, leftover dirs) — see `.claude/rules/proje
 - `src/app/api/auth/[...all]/route.ts` — the single catch-all route handler
   (`toNextJsHandler(auth)`). All auth HTTP traffic goes through this one file.
 - `src/lib/auth-client.ts` — `"use client"` browser client (`createAuthClient()`), used by
-  components like `SignInForm`/`SignOutButton`/`SignUpForm`.
+  components like `SignInForm`/`SignUpForm`/`UserMenu` (the account dropdown that
+  handles sign-out via `authClient.signOut()`).
 - `src/features/auth/schemas/auth.schema.ts` — zod schemas (`signUpSchema`, `signInSchema`) used
   with react-hook-form via `@hookform/resolvers`.
 

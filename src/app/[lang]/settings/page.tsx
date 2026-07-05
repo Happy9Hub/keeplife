@@ -7,11 +7,11 @@ import { getDictionary } from "@/lib/get-dictionary";
 import { isLocale } from "@/lib/i18n";
 import { prisma } from "@/lib/prisma";
 
-type DashboardPageProps = {
+type SettingsPageProps = {
   params: Promise<{ lang: string }>;
 };
 
-export default async function DashboardPage({ params }: DashboardPageProps) {
+export default async function SettingsPage({ params }: SettingsPageProps) {
   const { lang } = await params;
 
   if (!isLocale(lang)) {
@@ -36,8 +36,6 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
     select: { name: true },
   });
 
-  const name = session.user.name ?? "there";
-
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <AppHeader
@@ -49,14 +47,11 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
 
       <main className="flex flex-1 items-center justify-center px-6 py-16">
         <section className="mx-auto w-full max-w-2xl text-center">
-          <p className="text-sm font-medium text-zinc-500">
-            {dictionary.dashboard.title}
-          </p>
-          <h1 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-950">
-            {dictionary.dashboard.greeting} {name}
+          <h1 className="text-3xl font-semibold tracking-tight text-zinc-950">
+            {dictionary.settings.title}
           </h1>
           <p className="mt-4 text-sm leading-6 text-zinc-500">
-            {dictionary.dashboard.comingSoon}
+            {dictionary.settings.comingSoon}
           </p>
         </section>
       </main>

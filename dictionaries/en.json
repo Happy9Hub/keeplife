@@ -48,6 +48,10 @@
     "householdLabel": "Household",
     "signOut": "Sign out"
   },
+  "settings": {
+    "title": "Settings",
+    "comingSoon": "Account and household settings are coming soon."
+  },
   "landing": {
     "nav": {
       "logo": "KeepLife"

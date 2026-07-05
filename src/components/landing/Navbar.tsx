@@ -9,9 +9,10 @@ type NavbarProps = {
   dictionary: Dictionary;
   locale: Locale;
   isLoggedIn: boolean;
+  userName: string;
 };
 
-export function Navbar({ dictionary, locale, isLoggedIn }: NavbarProps) {
+export function Navbar({ dictionary, locale, isLoggedIn, userName }: NavbarProps) {
   return (
     <header className="fixed left-0 top-0 z-50 w-full border-b border-black/5 bg-white/75 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
@@ -22,7 +23,12 @@ export function Navbar({ dictionary, locale, isLoggedIn }: NavbarProps) {
         </h1>
         <div className="flex items-center gap-3">
           <LanguageSwitcher locale={locale} />
-          <AuthButtons dictionary={dictionary} locale={locale} isLoggedIn={isLoggedIn} />
+          <AuthButtons
+            dictionary={dictionary}
+            isLoggedIn={isLoggedIn}
+            locale={locale}
+            userName={userName}
+          />
         </div>
       </div>
     </header>

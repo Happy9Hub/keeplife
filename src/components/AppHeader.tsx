@@ -1,0 +1,50 @@
+import Link from "next/link";
+
+import { LanguageSwitcher } from "@/components/landing/LanguageSwitcher";
+import { UserMenu } from "@/features/auth/components/UserMenu";
+import type { Dictionary } from "@/lib/get-dictionary";
+import type { Locale } from "@/lib/i18n";
+
+type AppHeaderProps = {
+  lang: Locale;
+  dictionary: Dictionary;
+  userName: string;
+  householdName?: string | null;
+};
+
+/**
+ * Shared chrome for authenticated pages (dashboard, settings, ...):
+ * home-linked brand + active household name, language switcher, and account menu.
+ */
+export function AppHeader({ lang, dictionary, userName, householdName }: AppHeaderProps) {
+  return (
+    <header className="flex items-center justify-between border-b border-zinc-200 px-6 py-4">
+      <div className="flex flex-col">
+        <Link
+          className="text-sm font-semibold tracking-tight text-zinc-950 transition hover:opacity-80"
+          href={`/${lang}`}
+        >
+          {dictionary.landing.nav.logo}
+        </Link>
+        {householdName ? (
+          <span className="text-xs text-zinc-500">
+            {dictionary.dashboard.householdLabel}: {householdName}
+          </span>
+        ) : null}
+      </div>
+
+      <div className="flex items-center gap-3">
+        <LanguageSwitcher locale={lang} />
+        <UserMenu
+          dict={{
+            dashboard: dictionary.dashboard.title,
+            settings: dictionary.settings.title,
+            signOut: dictionary.dashboard.signOut,
+          }}
+          locale={lang}
+          userName={userName}
+        />
+      </div>
+    </header>
+  );
+}

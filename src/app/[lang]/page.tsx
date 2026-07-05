@@ -26,7 +26,12 @@ export default async function LandingPage({
 
   return (
     <main className="relative flex min-h-screen flex-col bg-white">
-      <Navbar dictionary={dictionary} locale={lang} isLoggedIn={isLoggedIn} />
+      <Navbar
+        dictionary={dictionary}
+        isLoggedIn={isLoggedIn}
+        locale={lang}
+        userName={session?.user?.name ?? ""}
+      />
       <HeroSection dictionary={dictionary.landing.hero} />
     </main>
   );

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { buttonStyles } from "@/components/ui/button";
-import { SignOutButton } from "@/features/auth/components/SignOutButton";
+import { UserMenu } from "@/features/auth/components/UserMenu";
 import type { Dictionary } from "@/lib/get-dictionary";
 import type { Locale } from "@/lib/i18n";
 
@@ -9,17 +9,26 @@ type AuthButtonsProps = {
   dictionary: Dictionary;
   locale: Locale;
   isLoggedIn: boolean;
+  userName: string;
 };
 
-export function AuthButtons({ dictionary, locale, isLoggedIn }: AuthButtonsProps) {
+export function AuthButtons({
+  dictionary,
+  locale,
+  isLoggedIn,
+  userName,
+}: AuthButtonsProps) {
   if (isLoggedIn) {
     return (
-      <div className="flex items-center gap-2">
-        <Link className={buttonStyles({ variant: "ghost" })} href={`/${locale}/dashboard`}>
-          {dictionary.dashboard.title}
-        </Link>
-        <SignOutButton dict={dictionary.dashboard.signOut} variant="outline" />
-      </div>
+      <UserMenu
+        dict={{
+          dashboard: dictionary.dashboard.title,
+          settings: dictionary.settings.title,
+          signOut: dictionary.dashboard.signOut,
+        }}
+        locale={locale}
+        userName={userName}
+      />
     );
   }
 

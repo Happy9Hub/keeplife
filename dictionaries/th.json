@@ -48,6 +48,10 @@
     "householdLabel": "บ้าน",
     "signOut": "ออกจากระบบ"
   },
+  "settings": {
+    "title": "ตั้งค่า",
+    "comingSoon": "การตั้งค่าบัญชีและบ้านกำลังจะมาเร็ว ๆ นี้"
+  },
   "landing": {
     "nav": {
       "logo": "KeepLife"
