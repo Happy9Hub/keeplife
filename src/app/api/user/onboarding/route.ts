@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import { auth } from "@/auth";
 import { DEFAULT_CATEGORIES } from "@/features/household/default-categories";
+import { DEFAULT_PAYMENT_SOURCES } from "@/features/household/default-payment-sources";
 import { prisma } from "@/lib/prisma";
 
 type OnboardingBody = {
@@ -62,6 +63,13 @@ async function handleOnboarding(request: Request) {
       await tx.category.createMany({
         data: DEFAULT_CATEGORIES.map((category) => ({
           ...category,
+          householdId: household.id,
+        })),
+      });
+
+      await tx.paymentSource.createMany({
+        data: DEFAULT_PAYMENT_SOURCES.map((name) => ({
+          name,
           householdId: household.id,
         })),
       });

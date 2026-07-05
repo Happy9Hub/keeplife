@@ -39,6 +39,7 @@ model Household {
   members        HouseholdMember[]
   activeForUsers User[]            @relation("UserActiveHousehold")
   categories     Category[]
+  paymentSources PaymentSource[]
   records        Record[]
   subscriptions  Subscription[]
   documents      Document[]
@@ -150,26 +151,43 @@ model Category {
   @@map("categories")
 }
 
+// Household-owned funding sources for records (Cash, a card, a wallet...).
+// Single free-text name — payment methods are proper nouns, not translated.
+model PaymentSource {
+  id          String    @id @default(uuid())
+  name        String
+  householdId String
+  createdAt   DateTime  @default(now())
+  household   Household @relation(fields: [householdId], references: [id])
+  records     Record[]
+
+  @@index([householdId])
+  @@map("payment_sources")
+}
+
 model Record {
-  id            String       @id @default(uuid())
-  amount        Decimal      @db.Decimal(12, 2)
-  recordDate    DateTime
-  title         String
-  type          RecordType
-  scope         ExpenseScope @default(PRIVATE)
-  slipUrl       String?
-  bankReference String?      @unique
-  isAutoParsed  Boolean      @default(false)
-  userId        String
-  householdId   String
-  categoryId    String
-  user          User         @relation(fields: [userId], references: [id])
-  household     Household    @relation(fields: [householdId], references: [id])
-  category      Category     @relation(fields: [categoryId], references: [id])
+  id              String        @id @default(uuid())
+  amount          Decimal       @db.Decimal(12, 2)
+  recordDate      DateTime
+  title           String
+  type            RecordType
+  scope           ExpenseScope  @default(PRIVATE)
+  slipUrl         String?
+  bankReference   String?       @unique
+  isAutoParsed    Boolean       @default(false)
+  userId          String
+  householdId     String
+  categoryId      String
+  paymentSourceId String
+  user            User          @relation(fields: [userId], references: [id])
+  household       Household     @relation(fields: [householdId], references: [id])
+  category        Category      @relation(fields: [categoryId], references: [id])
+  paymentSource   PaymentSource @relation(fields: [paymentSourceId], references: [id])
 
   @@index([userId])
   @@index([householdId])
   @@index([categoryId])
+  @@index([paymentSourceId])
   @@map("records")
 }
 
