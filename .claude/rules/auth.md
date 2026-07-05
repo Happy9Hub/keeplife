@@ -1,8 +1,7 @@
 # Authentication (better-auth)
 
-This project uses **better-auth**, not NextAuth/Auth.js. Several leftover files/dirs from an
-earlier NextAuth implementation still exist (see `.claude/rules/project-overview.md`) — don't
-copy patterns from them.
+This project uses **better-auth**, not NextAuth/Auth.js. The earlier NextAuth implementation has
+been fully removed (package, routes, leftover dirs) — see `.claude/rules/project-overview.md`.
 
 ## Where things live
 

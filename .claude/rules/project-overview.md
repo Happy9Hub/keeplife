@@ -24,14 +24,10 @@ and maintenance/passport-style reminders for a household (multiple users per hou
   `subscription`)
 - `Account` / `Session` / `Verification` — better-auth's own tables, do not hand-edit their shape
 
-## Known in-progress / leftover state
+## Migration history
 
-The project migrated from NextAuth to better-auth (see commit `4c79a2e`). As a result:
-
-- `src/app/api/auth/[...nextauth]/` and `src/app/api/auth/signup/` are **empty leftover
-  directories** from the old NextAuth setup. The live auth route is
-  `src/app/api/auth/[...all]/route.ts` (better-auth's catch-all handler). Don't add files to the
-  old paths — delete them if you're cleaning up, or ask the user before doing so since git history
-  may still reference them.
-- Auth UI (`SignInForm`, `SignOutButton`, `src/app/[lang]/signin/`) is newer than the last commit
-  and may be uncommitted work in progress — check `git status` before assuming it's finished.
+The project migrated from NextAuth to better-auth (see commit `4c79a2e`). The migration is now
+complete: the NextAuth package is gone from `package.json`, and the empty leftover directories
+(`src/app/api/auth/[...nextauth]/`, `src/app/api/auth/signup/`) have been removed. The only auth
+route is `src/app/api/auth/[...all]/route.ts` (better-auth's catch-all handler). Don't recreate
+those old paths.

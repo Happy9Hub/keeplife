@@ -43,9 +43,8 @@ See: `.claude/rules/architecture.md`.
 1. Check `src/auth.ts` first to see what better-auth already supports before writing custom
    logic.
 2. Client-side actions go through `authClient` from `src/lib/auth-client.ts`.
-3. Don't touch `src/app/api/auth/[...nextauth]/` or `src/app/api/auth/signup/` — they're empty
-   leftovers from the pre-migration NextAuth setup. The live handler is
-   `src/app/api/auth/[...all]/route.ts`.
+3. The only auth route is `src/app/api/auth/[...all]/route.ts` — the project has been fully
+   migrated off NextAuth, so don't recreate `[...nextauth]` or a standalone `signup` API route.
 
 See: `.claude/rules/auth.md`, `.claude/rules/project-overview.md`.
 
