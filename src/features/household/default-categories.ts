@@ -22,6 +22,7 @@ export const DEFAULT_CATEGORIES: DefaultCategory[] = [
   { kind: "fixed", nameEn: "Insurance", nameTh: "ประกันภัย / ประกันชีวิต" },
   { kind: "fixed", nameEn: "Subscriptions & Cloud", nameTh: "ค่าบริการรายเดือน / คลาวด์" },
   { kind: "variable", nameEn: "Groceries", nameTh: "ของใช้ในบ้าน" },
+  { kind: "variable", nameEn: "Food Delivery & Takeaway", nameTh: "สั่งอาหาร / เดลิเวอรี่" },
   { kind: "variable", nameEn: "Transport & Logistics", nameTh: "เดินทาง / ขนส่งเดลิเวอรี" },
   { kind: "variable", nameEn: "Healthcare", nameTh: "สุขภาพ" },
   { kind: "variable", nameEn: "Beauty & Personal Care", nameTh: "เครื่องสำอาง / สกินแคร์" },

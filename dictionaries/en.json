@@ -52,6 +52,49 @@
     "title": "Settings",
     "comingSoon": "Account and household settings are coming soon."
   },
+  "records": {
+    "navLabel": "Expenses",
+    "title": "Expenses",
+    "total": "Total",
+    "empty": "No expenses yet. Add your first one.",
+    "addExpense": "Add expense",
+    "columns": {
+      "date": "Date",
+      "title": "Title",
+      "category": "Category",
+      "type": "Type",
+      "scope": "Scope",
+      "paymentSource": "Payment source",
+      "amount": "Amount",
+      "by": "Added by"
+    },
+    "types": {
+      "expense": "Expense",
+      "bill": "Bill",
+      "subscription": "Subscription",
+      "maintenance": "Maintenance"
+    },
+    "scopes": {
+      "PRIVATE": "Private",
+      "SHARED": "Shared"
+    },
+    "form": {
+      "title": "Title",
+      "titlePlaceholder": "e.g. Weekly groceries",
+      "amount": "Amount",
+      "amountPlaceholder": "0.00",
+      "category": "Category",
+      "paymentSource": "Payment source",
+      "type": "Type",
+      "scope": "Scope",
+      "date": "Date",
+      "submit": "Save expense",
+      "submitting": "Saving...",
+      "errorMessage": "Unable to save the expense.",
+      "noCategories": "This household has no categories yet, so expenses can't be added.",
+      "noPaymentSources": "This household has no payment sources yet, so expenses can't be added."
+    }
+  },
   "landing": {
     "nav": {
       "logo": "KeepLife"

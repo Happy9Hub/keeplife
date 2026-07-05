@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { AppNav } from "@/components/AppNav";
 import { LanguageSwitcher } from "@/components/landing/LanguageSwitcher";
 import { UserMenu } from "@/features/auth/components/UserMenu";
 import type { Dictionary } from "@/lib/get-dictionary";
@@ -32,6 +33,13 @@ export function AppHeader({ lang, dictionary, userName, householdName }: AppHead
           </span>
         ) : null}
       </div>
+
+      <AppNav
+        items={[
+          { href: `/${lang}/dashboard`, label: dictionary.dashboard.title },
+          { href: `/${lang}/records`, label: dictionary.records.navLabel },
+        ]}
+      />
 
       <div className="flex items-center gap-3">
         <LanguageSwitcher locale={lang} />
