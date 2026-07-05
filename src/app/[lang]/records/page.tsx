@@ -3,6 +3,7 @@ import { notFound, redirect } from "next/navigation";
 
 import { AppHeader } from "@/components/AppHeader";
 import { AddRecordDialog } from "@/features/records/components/AddRecordDialog";
+import { RecordRowActions } from "@/features/records/components/RecordRowActions";
 import { auth } from "@/auth";
 import { getDictionary } from "@/lib/get-dictionary";
 import { isLocale } from "@/lib/i18n";
@@ -79,6 +80,25 @@ export default async function RecordsPage({ params }: RecordsPageProps) {
     label: paymentSource.name,
   }));
 
+  const recordFormDict = {
+    ...dictionary.records.form,
+    types: dictionary.records.types,
+    scopes: dictionary.records.scopes,
+  };
+
+  const rowActionsDict = {
+    edit: dictionary.records.edit,
+    delete: dictionary.records.delete,
+    editExpense: dictionary.records.editExpense,
+    deleteTitle: dictionary.records.deleteTitle,
+    deleteConfirm: dictionary.records.deleteConfirm,
+    deleting: dictionary.records.deleting,
+    deleteError: dictionary.records.deleteError,
+    cancel: dictionary.records.cancel,
+    saveChanges: dictionary.records.form.saveChanges,
+    form: recordFormDict,
+  };
+
   const total = records.reduce((sum, record) => sum + Number(record.amount), 0);
 
   return (
@@ -105,11 +125,7 @@ export default async function RecordsPage({ params }: RecordsPageProps) {
             categories={categoryOptions}
             dict={{
               addExpense: dictionary.records.addExpense,
-              form: {
-                ...dictionary.records.form,
-                types: dictionary.records.types,
-                scopes: dictionary.records.scopes,
-              },
+              form: recordFormDict,
             }}
             paymentSources={paymentSourceOptions}
           />
@@ -134,6 +150,9 @@ export default async function RecordsPage({ params }: RecordsPageProps) {
                   <th className="px-4 py-3 text-right font-medium">
                     {dictionary.records.columns.amount}
                   </th>
+                  <th className="px-4 py-3 text-right font-medium">
+                    <span className="sr-only">{dictionary.records.columns.actions}</span>
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-100">
@@ -150,6 +169,23 @@ export default async function RecordsPage({ params }: RecordsPageProps) {
                     </td>
                     <td className="whitespace-nowrap px-4 py-3 text-right font-medium text-zinc-950">
                       {formatAmount(Number(record.amount))}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-3 text-right">
+                      <RecordRowActions
+                        categories={categoryOptions}
+                        dict={rowActionsDict}
+                        paymentSources={paymentSourceOptions}
+                        recordId={record.id}
+                        values={{
+                          title: record.title,
+                          amount: record.amount.toString(),
+                          categoryId: record.categoryId,
+                          paymentSourceId: record.paymentSourceId,
+                          type: record.type,
+                          scope: record.scope,
+                          recordDate: record.recordDate.toISOString().slice(0, 10),
+                        }}
+                      />
                     </td>
                   </tr>
                 ))}

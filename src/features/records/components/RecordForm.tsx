@@ -53,6 +53,10 @@ type RecordFormProps = {
   paymentSources: CategoryOption[];
   dict: RecordFormDictionary;
   onSuccess: () => void;
+  // When set, the form edits that record via PATCH instead of creating via POST.
+  recordId?: string;
+  initialValues?: CreateRecordValues;
+  submitLabel?: string;
 };
 
 function todayIso() {
@@ -64,12 +68,15 @@ export function RecordForm({
   paymentSources,
   dict,
   onSuccess,
+  recordId,
+  initialValues,
+  submitLabel,
 }: RecordFormProps) {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const form = useForm<CreateRecordValues>({
     resolver: zodResolver(createRecordSchema),
-    defaultValues: {
+    defaultValues: initialValues ?? {
       title: "",
       amount: "",
       categoryId: categories[0]?.id ?? "",
@@ -94,11 +101,14 @@ export function RecordForm({
     setErrorMessage(null);
 
     try {
-      const response = await fetch("/api/records", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
+      const response = await fetch(
+        recordId ? `/api/records/${recordId}` : "/api/records",
+        {
+          method: recordId ? "PATCH" : "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(values),
+        },
+      );
 
       if (!response.ok) {
         const body = (await response.json().catch(() => null)) as { error?: string } | null;
@@ -249,7 +259,7 @@ export function RecordForm({
         />
 
         <Button className="w-full" disabled={isSubmitting} type="submit">
-          {isSubmitting ? dict.submitting : dict.submit}
+          {isSubmitting ? dict.submitting : (submitLabel ?? dict.submit)}
         </Button>
 
         {errorMessage ? (

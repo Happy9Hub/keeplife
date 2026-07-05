@@ -3,7 +3,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: "default" | "ghost" | "outline";
+  variant?: "default" | "ghost" | "outline" | "destructive";
 };
 
 export function buttonStyles({
@@ -19,6 +19,7 @@ export function buttonStyles({
     variant === "outline" &&
       "border border-zinc-200 bg-white text-zinc-950 hover:bg-zinc-50",
     variant === "default" && "bg-zinc-900 text-white hover:bg-zinc-800",
+    variant === "destructive" && "bg-red-600 text-white hover:bg-red-700",
     className,
   );
 }

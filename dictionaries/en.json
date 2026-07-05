@@ -58,6 +58,14 @@
     "total": "Total",
     "empty": "No expenses yet. Add your first one.",
     "addExpense": "Add expense",
+    "editExpense": "Edit expense",
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "deleteTitle": "Delete expense",
+    "deleteConfirm": "Delete this expense? This can't be undone.",
+    "deleting": "Deleting...",
+    "deleteError": "Unable to delete the expense.",
     "columns": {
       "date": "Date",
       "title": "Title",
@@ -66,7 +74,8 @@
       "scope": "Scope",
       "paymentSource": "Payment source",
       "amount": "Amount",
-      "by": "Added by"
+      "by": "Added by",
+      "actions": "Actions"
     },
     "types": {
       "expense": "Expense",
@@ -89,6 +98,7 @@
       "scope": "Scope",
       "date": "Date",
       "submit": "Save expense",
+      "saveChanges": "Save changes",
       "submitting": "Saving...",
       "errorMessage": "Unable to save the expense.",
       "noCategories": "This household has no categories yet, so expenses can't be added.",
