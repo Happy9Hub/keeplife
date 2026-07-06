@@ -14,7 +14,11 @@ const badgeVariants: Record<BadgeVariant, string> = {
   outline: "border border-zinc-200 text-zinc-600",
 };
 
-export function Badge({ className, variant = "secondary", ...props }: BadgeProps) {
+export function Badge({
+  className,
+  variant = "secondary",
+  ...props
+}: BadgeProps) {
   return (
     <span
       className={cn(

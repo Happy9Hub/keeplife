@@ -26,9 +26,10 @@ export function buttonStyles({
   size?: ButtonSize;
 } = {}) {
   return cn(
-    "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 disabled:pointer-events-none disabled:opacity-50",
+    "inline-flex items-center justify-center rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 disabled:pointer-events-none disabled:opacity-50",
     sizeStyles[size],
-    variant === "ghost" && "bg-transparent hover:bg-zinc-100 hover:text-zinc-900",
+    variant === "ghost" &&
+      "bg-transparent hover:bg-zinc-100 hover:text-zinc-900",
     variant === "outline" &&
       "border border-zinc-200 bg-white text-zinc-950 hover:bg-zinc-50",
     variant === "default" && "bg-zinc-900 text-white hover:bg-zinc-800",

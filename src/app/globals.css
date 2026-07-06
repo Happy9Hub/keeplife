@@ -1,28 +1,58 @@
 @import "tailwindcss";
 
+/*
+ * KeepLife design tokens — bare HSL triplets, consumed as hsl(var(--token)).
+ * The @theme block below maps them to Tailwind color utilities
+ * (bg-primary, text-muted-foreground, border-border, ...).
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --muted-foreground: #71717a;
+  --background: 30 40% 99%; /* warm off-white, not cold gray */
+  --foreground: 20 25% 15%;
+
+  --primary: 15 68% 52%; /* coral #D85A30 */
+  --primary-foreground: 20 60% 97%;
+
+  --secondary: 161 55% 93%; /* teal tint */
+  --secondary-foreground: 161 70% 22%;
+
+  --accent: 16 66% 94%; /* coral tint — Nong Leaf card bg */
+  --accent-foreground: 18 60% 25%;
+
+  --destructive: 0 72% 59%; /* #E24B4A */
+
+  --muted: 30 25% 95%;
+  --muted-foreground: 25 10% 45%;
+
+  --border: 25 20% 90%;
+
+  --radius: 1rem; /* 16px — this alone changes the whole feel */
+
+  --chart-1: 17 82% 71%; /* coral bars #F0997B */
+  --chart-2: 155 51% 58%; /* teal */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-muted-foreground: var(--muted-foreground);
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-border: hsl(var(--border));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+
   --font-sans: Arial, Helvetica, sans-serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
   font-family: Arial, Helvetica, sans-serif;
 }
