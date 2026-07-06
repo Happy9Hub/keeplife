@@ -141,7 +141,8 @@ export default async function RecordsPage({ params, searchParams }: RecordsPageP
   const sortDir: Prisma.SortOrder = filters.dir === "asc" ? "asc" : "desc";
   const orderBy: Prisma.RecordOrderByWithRelationInput = { [SORT_FIELDS[sortKey]]: sortDir };
 
-  const [household, categories, paymentSources, records, monthByScope] = await Promise.all([
+  const [household, categories, paymentSources, records, monthByScope, remindersForRecords] =
+    await Promise.all([
     prisma.household.findUnique({
       where: { id: householdId },
       select: { name: true },
@@ -169,7 +170,16 @@ export default async function RecordsPage({ params, searchParams }: RecordsPageP
       where: monthWhere,
       _sum: { amount: true },
     }),
+    prisma.reminder.findMany({
+      where: { householdId, status: "pending", recordId: { not: null } },
+      select: { recordId: true },
+    }),
   ]);
+
+  // Records that already have an open (pending) reminder linked to them.
+  const recordsWithReminder = new Set(
+    remindersForRecords.map((reminder) => reminder.recordId),
+  );
 
   const scopeTotals = Object.fromEntries(
     monthByScope.map((group) => [group.scope, Number(group._sum.amount ?? 0)]),
@@ -209,6 +219,7 @@ export default async function RecordsPage({ params, searchParams }: RecordsPageP
     cancel: dictionary.records.cancel,
     saveChanges: dictionary.records.form.saveChanges,
     createReminder: dictionary.reminders.createFromRecord,
+    reminderSet: dictionary.reminders.reminderSet,
     form: recordFormDict,
     reminderForm: {
       ...dictionary.reminders.form,
@@ -413,6 +424,7 @@ export default async function RecordsPage({ params, searchParams }: RecordsPageP
                       <RecordRowActions
                         categories={categoryOptions}
                         dict={rowActionsDict}
+                        hasReminder={recordsWithReminder.has(record.id)}
                         paymentSources={paymentSourceOptions}
                         recordId={record.id}
                         values={{

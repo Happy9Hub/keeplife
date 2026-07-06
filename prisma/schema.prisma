@@ -183,6 +183,7 @@ model Record {
   household       Household     @relation(fields: [householdId], references: [id])
   category        Category      @relation(fields: [categoryId], references: [id])
   paymentSource   PaymentSource @relation(fields: [paymentSourceId], references: [id])
+  reminders       Reminder[]
 
   @@index([userId])
   @@index([householdId])
@@ -215,14 +216,17 @@ model Reminder {
   userId         String
   householdId    String
   documentId     String?
+  recordId       String?
   user           User           @relation(fields: [userId], references: [id])
   household      Household      @relation(fields: [householdId], references: [id])
   document       Document?      @relation(fields: [documentId], references: [id], onDelete: SetNull)
+  record         Record?        @relation(fields: [recordId], references: [id], onDelete: SetNull)
 
   @@index([dueDate])
   @@index([householdId])
   @@index([userId])
   @@index([documentId])
+  @@index([recordId])
   @@map("reminders")
 }
 

@@ -33,6 +33,7 @@ export type ReminderFormDictionary = {
   submit: string;
   submitting: string;
   errorMessage: string;
+  duplicate: string;
   types: Record<ReminderTypeValue, string>;
 };
 
@@ -43,6 +44,8 @@ type ReminderFormProps = {
   reminderId?: string;
   initialValues?: CreateReminderValues;
   submitLabel?: string;
+  // Source record when creating via the "Create reminder" shortcut on a record.
+  recordId?: string;
 };
 
 function todayIso() {
@@ -55,6 +58,7 @@ export function ReminderForm({
   reminderId,
   initialValues,
   submitLabel,
+  recordId,
 }: ReminderFormProps) {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -76,18 +80,26 @@ export function ReminderForm({
     setErrorMessage(null);
 
     try {
+      const body = !reminderId && recordId ? { ...values, recordId } : values;
       const response = await fetch(
         reminderId ? `/api/reminders/${reminderId}` : "/api/reminders",
         {
           method: reminderId ? "PATCH" : "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(values),
+          body: JSON.stringify(body),
         },
       );
 
       if (!response.ok) {
-        const body = (await response.json().catch(() => null)) as { error?: string } | null;
-        setErrorMessage(body?.error ?? dict.errorMessage);
+        if (response.status === 409) {
+          setErrorMessage(dict.duplicate);
+          return;
+        }
+
+        const errorBody = (await response.json().catch(() => null)) as {
+          error?: string;
+        } | null;
+        setErrorMessage(errorBody?.error ?? dict.errorMessage);
         return;
       }
 

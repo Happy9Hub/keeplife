@@ -38,6 +38,39 @@ export async function POST(request: Request) {
 
     const { title, type, dueDate, isRecurring, intervalMonths } = parsed.data;
 
+    // Optional link back to the source record (create-from-record shortcut).
+    const rawRecordId =
+      typeof json === "object" && json !== null && "recordId" in json
+        ? (json as { recordId?: unknown }).recordId
+        : undefined;
+    let recordId: string | null = null;
+
+    if (typeof rawRecordId === "string" && rawRecordId.length > 0) {
+      const record = await prisma.record.findFirst({
+        where: { id: rawRecordId, householdId },
+        select: { id: true },
+      });
+
+      if (!record) {
+        return NextResponse.json({ error: "Invalid record." }, { status: 400 });
+      }
+
+      // One pending reminder per record — don't create duplicates.
+      const existing = await prisma.reminder.findFirst({
+        where: { recordId: record.id, status: "pending" },
+        select: { id: true },
+      });
+
+      if (existing) {
+        return NextResponse.json(
+          { error: "A reminder already exists for this expense." },
+          { status: 409 },
+        );
+      }
+
+      recordId = record.id;
+    }
+
     const reminder = await prisma.reminder.create({
       data: {
         title,
@@ -49,6 +82,7 @@ export async function POST(request: Request) {
         intervalMonths: isRecurring ? Number(intervalMonths) : null,
         userId,
         householdId,
+        recordId,
       },
       select: { id: true },
     });

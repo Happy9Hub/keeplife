@@ -131,6 +131,7 @@
     "deleteError": "Unable to delete the reminder.",
     "empty": "No reminders here yet.",
     "overdue": "Overdue",
+    "reminderSet": "Reminder set",
     "columns": {
       "dueDate": "Due date",
       "title": "Title",
@@ -171,7 +172,8 @@
       "submit": "Save reminder",
       "saveChanges": "Save changes",
       "submitting": "Saving...",
-      "errorMessage": "Unable to save the reminder."
+      "errorMessage": "Unable to save the reminder.",
+      "duplicate": "This expense already has a pending reminder."
     }
   },
   "landing": {

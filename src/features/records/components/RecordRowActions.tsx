@@ -1,5 +1,6 @@
 "use client";
 
+import { Bell } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -53,6 +54,7 @@ export type RecordRowActionsDictionary = {
   deleteError: string;
   cancel: string;
   saveChanges: string;
+  reminderSet: string;
   form: RecordFormDictionary;
   reminderForm: ReminderFormDictionary;
 };
@@ -62,6 +64,7 @@ type RecordRowActionsProps = {
   values: CreateRecordValues;
   categories: CategoryOption[];
   paymentSources: CategoryOption[];
+  hasReminder: boolean;
   dict: RecordRowActionsDictionary;
 };
 
@@ -70,6 +73,7 @@ export function RecordRowActions({
   values,
   categories,
   paymentSources,
+  hasReminder,
   dict,
 }: RecordRowActionsProps) {
   const router = useRouter();
@@ -103,7 +107,12 @@ export function RecordRowActions({
   }
 
   return (
-    <div className="flex items-center justify-end">
+    <div className="flex items-center justify-end gap-1">
+      {hasReminder ? (
+        <span aria-label={dict.reminderSet} title={dict.reminderSet}>
+          <Bell aria-hidden="true" className="h-4 w-4 text-zinc-400" />
+        </span>
+      ) : null}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <button
@@ -127,9 +136,11 @@ export function RecordRowActions({
           <DropdownMenuItem onClick={() => setEditOpen(true)}>
             {dict.edit}
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setReminderOpen(true)}>
-            {dict.createReminder}
-          </DropdownMenuItem>
+          {hasReminder ? null : (
+            <DropdownMenuItem onClick={() => setReminderOpen(true)}>
+              {dict.createReminder}
+            </DropdownMenuItem>
+          )}
           <DropdownMenuItem
             className="text-red-600 hover:bg-red-50"
             onClick={() => setDeleteOpen(true)}
@@ -172,6 +183,7 @@ export function RecordRowActions({
             setReminderOpen(false);
             router.refresh();
           }}
+          recordId={recordId}
         />
       </Dialog>
 
