@@ -2,19 +2,32 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
+type ButtonVariant = "default" | "ghost" | "outline" | "destructive";
+type ButtonSize = "default" | "sm" | "icon";
+
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: "default" | "ghost" | "outline" | "destructive";
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+};
+
+const sizeStyles: Record<ButtonSize, string> = {
+  default: "h-10 px-4 py-2",
+  sm: "h-9 px-3",
+  icon: "h-9 w-9",
 };
 
 export function buttonStyles({
   className,
   variant = "default",
+  size = "default",
 }: {
   className?: string;
-  variant?: ButtonProps["variant"];
+  variant?: ButtonVariant;
+  size?: ButtonSize;
 } = {}) {
   return cn(
-    "inline-flex h-10 items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 disabled:pointer-events-none disabled:opacity-50",
+    "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 disabled:pointer-events-none disabled:opacity-50",
+    sizeStyles[size],
     variant === "ghost" && "bg-transparent hover:bg-zinc-100 hover:text-zinc-900",
     variant === "outline" &&
       "border border-zinc-200 bg-white text-zinc-950 hover:bg-zinc-50",
@@ -28,11 +41,12 @@ export function Button({
   className,
   type = "button",
   variant = "default",
+  size = "default",
   ...props
 }: ButtonProps) {
   return (
     <button
-      className={buttonStyles({ className, variant })}
+      className={buttonStyles({ className, size, variant })}
       type={type}
       {...props}
     />

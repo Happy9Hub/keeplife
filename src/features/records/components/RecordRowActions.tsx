@@ -6,6 +6,12 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog } from "@/components/ui/dialog";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
   RecordForm,
   type CategoryOption,
   type RecordFormDictionary,
@@ -15,6 +21,7 @@ import type { CreateRecordValues } from "@/features/records/schemas/record.schem
 export type RecordRowActionsDictionary = {
   edit: string;
   delete: string;
+  actions: string;
   editExpense: string;
   deleteTitle: string;
   deleteConfirm: string;
@@ -70,21 +77,38 @@ export function RecordRowActions({
   }
 
   return (
-    <div className="flex items-center justify-end gap-3">
-      <button
-        className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900"
-        onClick={() => setEditOpen(true)}
-        type="button"
-      >
-        {dict.edit}
-      </button>
-      <button
-        className="text-sm font-medium text-red-600 transition-colors hover:text-red-700"
-        onClick={() => setDeleteOpen(true)}
-        type="button"
-      >
-        {dict.delete}
-      </button>
+    <div className="flex items-center justify-end">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <button
+            aria-label={dict.actions}
+            className="flex h-8 w-8 items-center justify-center rounded-md text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900"
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              className="h-4 w-4"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <circle cx="5" cy="12" r="1.6" />
+              <circle cx="12" cy="12" r="1.6" />
+              <circle cx="19" cy="12" r="1.6" />
+            </svg>
+          </button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuItem onClick={() => setEditOpen(true)}>
+            {dict.edit}
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            className="text-red-600 hover:bg-red-50"
+            onClick={() => setDeleteOpen(true)}
+          >
+            {dict.delete}
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
 
       <Dialog onOpenChange={setEditOpen} open={editOpen} title={dict.editExpense}>
         <RecordForm
