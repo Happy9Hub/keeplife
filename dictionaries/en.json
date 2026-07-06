@@ -114,6 +114,66 @@
       "noPaymentSources": "This household has no payment sources yet, so expenses can't be added."
     }
   },
+  "reminders": {
+    "navLabel": "Reminders",
+    "title": "Reminders",
+    "add": "Add reminder",
+    "editReminder": "Edit reminder",
+    "createFromRecord": "Create reminder",
+    "edit": "Edit",
+    "delete": "Delete",
+    "markDone": "Mark done",
+    "dismiss": "Dismiss",
+    "cancel": "Cancel",
+    "deleteTitle": "Delete reminder",
+    "deleteConfirm": "Delete this reminder? This can't be undone.",
+    "deleting": "Deleting...",
+    "deleteError": "Unable to delete the reminder.",
+    "empty": "No reminders here yet.",
+    "overdue": "Overdue",
+    "columns": {
+      "dueDate": "Due date",
+      "title": "Title",
+      "type": "Type",
+      "recurring": "Repeats",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "types": {
+      "maintenance": "Maintenance",
+      "passport": "Passport",
+      "bill": "Bill",
+      "subscription": "Subscription"
+    },
+    "statuses": {
+      "pending": "Pending",
+      "completed": "Completed",
+      "dismissed": "Dismissed"
+    },
+    "filters": {
+      "upcoming": "Upcoming",
+      "completed": "Completed",
+      "dismissed": "Dismissed",
+      "all": "All"
+    },
+    "recurring": {
+      "everyMonths": "Every {n} months",
+      "oneOff": "One-off"
+    },
+    "form": {
+      "title": "Title",
+      "titlePlaceholder": "e.g. Renew passport",
+      "type": "Type",
+      "dueDate": "Due date",
+      "isRecurring": "Repeats on a schedule",
+      "intervalMonths": "Every (months)",
+      "intervalMonthsPlaceholder": "e.g. 12",
+      "submit": "Save reminder",
+      "saveChanges": "Save changes",
+      "submitting": "Saving...",
+      "errorMessage": "Unable to save the reminder."
+    }
+  },
   "landing": {
     "nav": {
       "logo": "KeepLife"

@@ -12,79 +12,64 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
-  RecordForm,
-  type CategoryOption,
-  type RecordFormDictionary,
-} from "@/features/records/components/RecordForm";
-import type {
-  CreateRecordValues,
-  RecordTypeValue,
-} from "@/features/records/schemas/record.schema";
-import {
   ReminderForm,
   type ReminderFormDictionary,
 } from "@/features/reminders/components/ReminderForm";
-import type { ReminderTypeValue } from "@/features/reminders/schemas/reminder.schema";
+import type {
+  CreateReminderValues,
+  ReminderStatusValue,
+} from "@/features/reminders/schemas/reminder.schema";
 
-// Record types don't all map to reminder types; "expense" has no equivalent.
-const RECORD_TO_REMINDER_TYPE: Record<RecordTypeValue, ReminderTypeValue> = {
-  bill: "bill",
-  subscription: "subscription",
-  maintenance: "maintenance",
-  expense: "bill",
-};
-
-function addOneMonth(isoDate: string) {
-  const [year, month, day] = isoDate.split("-").map(Number);
-  const date = new Date(Date.UTC(year, month - 1, day));
-  date.setUTCMonth(date.getUTCMonth() + 1);
-  return date.toISOString().slice(0, 10);
-}
-
-export type RecordRowActionsDictionary = {
+export type ReminderRowActionsDictionary = {
   edit: string;
   delete: string;
-  createReminder: string;
+  markDone: string;
+  dismiss: string;
   actions: string;
-  editExpense: string;
+  editReminder: string;
   deleteTitle: string;
   deleteConfirm: string;
   deleting: string;
   deleteError: string;
   cancel: string;
   saveChanges: string;
-  form: RecordFormDictionary;
-  reminderForm: ReminderFormDictionary;
+  form: ReminderFormDictionary;
 };
 
-type RecordRowActionsProps = {
-  recordId: string;
-  values: CreateRecordValues;
-  categories: CategoryOption[];
-  paymentSources: CategoryOption[];
-  dict: RecordRowActionsDictionary;
+type ReminderRowActionsProps = {
+  reminderId: string;
+  status: ReminderStatusValue;
+  values: CreateReminderValues;
+  dict: ReminderRowActionsDictionary;
 };
 
-export function RecordRowActions({
-  recordId,
+export function ReminderRowActions({
+  reminderId,
+  status,
   values,
-  categories,
-  paymentSources,
   dict,
-}: RecordRowActionsProps) {
+}: ReminderRowActionsProps) {
   const router = useRouter();
   const [editOpen, setEditOpen] = useState(false);
-  const [reminderOpen, setReminderOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [deleteError, setDeleteError] = useState<string | null>(null);
+
+  async function updateStatus(next: ReminderStatusValue) {
+    await fetch(`/api/reminders/${reminderId}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status: next }),
+    });
+    router.refresh();
+  }
 
   async function handleDelete() {
     setDeleteError(null);
     setIsDeleting(true);
 
     try {
-      const response = await fetch(`/api/records/${recordId}`, { method: "DELETE" });
+      const response = await fetch(`/api/reminders/${reminderId}`, { method: "DELETE" });
 
       if (!response.ok) {
         const body = (await response.json().catch(() => null)) as { error?: string } | null;
@@ -124,12 +109,17 @@ export function RecordRowActions({
           </button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem onClick={() => setEditOpen(true)}>
-            {dict.edit}
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setReminderOpen(true)}>
-            {dict.createReminder}
-          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setEditOpen(true)}>{dict.edit}</DropdownMenuItem>
+          {status !== "completed" ? (
+            <DropdownMenuItem onClick={() => updateStatus("completed")}>
+              {dict.markDone}
+            </DropdownMenuItem>
+          ) : null}
+          {status !== "dismissed" ? (
+            <DropdownMenuItem onClick={() => updateStatus("dismissed")}>
+              {dict.dismiss}
+            </DropdownMenuItem>
+          ) : null}
           <DropdownMenuItem
             className="text-red-600 hover:bg-red-50"
             onClick={() => setDeleteOpen(true)}
@@ -139,39 +129,16 @@ export function RecordRowActions({
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <Dialog onOpenChange={setEditOpen} open={editOpen} title={dict.editExpense}>
-        <RecordForm
-          categories={categories}
+      <Dialog onOpenChange={setEditOpen} open={editOpen} title={dict.editReminder}>
+        <ReminderForm
           dict={dict.form}
           initialValues={values}
           onSuccess={() => {
             setEditOpen(false);
             router.refresh();
           }}
-          paymentSources={paymentSources}
-          recordId={recordId}
+          reminderId={reminderId}
           submitLabel={dict.saveChanges}
-        />
-      </Dialog>
-
-      <Dialog
-        onOpenChange={setReminderOpen}
-        open={reminderOpen}
-        title={dict.createReminder}
-      >
-        <ReminderForm
-          dict={dict.reminderForm}
-          initialValues={{
-            title: values.title,
-            type: RECORD_TO_REMINDER_TYPE[values.type],
-            dueDate: addOneMonth(values.recordDate),
-            isRecurring: false,
-            intervalMonths: "",
-          }}
-          onSuccess={() => {
-            setReminderOpen(false);
-            router.refresh();
-          }}
         />
       </Dialog>
 

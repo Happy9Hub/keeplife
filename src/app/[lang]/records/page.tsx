@@ -208,7 +208,12 @@ export default async function RecordsPage({ params, searchParams }: RecordsPageP
     deleteError: dictionary.records.deleteError,
     cancel: dictionary.records.cancel,
     saveChanges: dictionary.records.form.saveChanges,
+    createReminder: dictionary.reminders.createFromRecord,
     form: recordFormDict,
+    reminderForm: {
+      ...dictionary.reminders.form,
+      types: dictionary.reminders.types,
+    },
   };
 
   // Build a menu-item href by merging a change into the current params.

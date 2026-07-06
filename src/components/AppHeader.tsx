@@ -38,6 +38,7 @@ export function AppHeader({ lang, dictionary, userName, householdName }: AppHead
         items={[
           { href: `/${lang}/dashboard`, label: dictionary.dashboard.title },
           { href: `/${lang}/records`, label: dictionary.records.navLabel },
+          { href: `/${lang}/reminders`, label: dictionary.reminders.navLabel },
         ]}
       />
 

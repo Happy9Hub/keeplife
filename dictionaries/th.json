@@ -114,6 +114,66 @@
       "noPaymentSources": "บ้านนี้ยังไม่มีแหล่งเงิน จึงยังเพิ่มค่าใช้จ่ายไม่ได้"
     }
   },
+  "reminders": {
+    "navLabel": "การแจ้งเตือน",
+    "title": "การแจ้งเตือน",
+    "add": "เพิ่มการแจ้งเตือน",
+    "editReminder": "แก้ไขการแจ้งเตือน",
+    "createFromRecord": "สร้างการแจ้งเตือน",
+    "edit": "แก้ไข",
+    "delete": "ลบ",
+    "markDone": "ทำเสร็จแล้ว",
+    "dismiss": "ยกเลิก",
+    "cancel": "ยกเลิก",
+    "deleteTitle": "ลบการแจ้งเตือน",
+    "deleteConfirm": "ลบการแจ้งเตือนนี้? การกระทำนี้ไม่สามารถย้อนกลับได้",
+    "deleting": "กำลังลบ...",
+    "deleteError": "ไม่สามารถลบการแจ้งเตือนได้",
+    "empty": "ยังไม่มีการแจ้งเตือน",
+    "overdue": "เลยกำหนด",
+    "columns": {
+      "dueDate": "วันครบกำหนด",
+      "title": "รายการ",
+      "type": "ประเภท",
+      "recurring": "รอบซ้ำ",
+      "status": "สถานะ",
+      "actions": "จัดการ"
+    },
+    "types": {
+      "maintenance": "ซ่อมบำรุง",
+      "passport": "พาสปอร์ต",
+      "bill": "บิล",
+      "subscription": "ค่าบริการรายเดือน"
+    },
+    "statuses": {
+      "pending": "รอดำเนินการ",
+      "completed": "เสร็จแล้ว",
+      "dismissed": "ยกเลิกแล้ว"
+    },
+    "filters": {
+      "upcoming": "กำลังจะถึง",
+      "completed": "เสร็จแล้ว",
+      "dismissed": "ยกเลิกแล้ว",
+      "all": "ทั้งหมด"
+    },
+    "recurring": {
+      "everyMonths": "ทุก ๆ {n} เดือน",
+      "oneOff": "ครั้งเดียว"
+    },
+    "form": {
+      "title": "รายการ",
+      "titlePlaceholder": "เช่น ต่ออายุพาสปอร์ต",
+      "type": "ประเภท",
+      "dueDate": "วันครบกำหนด",
+      "isRecurring": "ทำซ้ำตามรอบ",
+      "intervalMonths": "ทุก ๆ (เดือน)",
+      "intervalMonthsPlaceholder": "เช่น 12",
+      "submit": "บันทึกการแจ้งเตือน",
+      "saveChanges": "บันทึกการเปลี่ยนแปลง",
+      "submitting": "กำลังบันทึก...",
+      "errorMessage": "ไม่สามารถบันทึกการแจ้งเตือนได้"
+    }
+  },
   "landing": {
     "nav": {
       "logo": "KeepLife"
