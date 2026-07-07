@@ -57,13 +57,13 @@ export function MonthNavigator({
     <Popover onOpenChange={handleOpenChange} open={open}>
       <PopoverTrigger asChild>
         <button
-          className="inline-flex h-9 items-center gap-2 rounded-md border border-zinc-200 px-3 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-50"
+          className="inline-flex h-9 items-center gap-2 rounded-md border border-border px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted"
           type="button"
         >
           {label}
           <svg
             aria-hidden="true"
-            className="h-4 w-4 text-zinc-500"
+            className="h-4 w-4 text-muted-foreground"
             fill="none"
             stroke="currentColor"
             strokeWidth={2}
@@ -84,7 +84,7 @@ export function MonthNavigator({
           >
             <ChevronLeft className="h-4 w-4" />
           </Button>
-          <span className="text-sm font-semibold text-zinc-900">{viewYear}</span>
+          <span className="text-sm font-semibold text-foreground">{viewYear}</span>
           <Button
             aria-label={nextYearLabel}
             onClick={() => setViewYear((year) => year + 1)}
@@ -101,7 +101,7 @@ export function MonthNavigator({
 
             return (
               <Button
-                className={cn("w-full", !isSelected && "text-zinc-600")}
+                className={cn("w-full", !isSelected && "text-muted-foreground")}
                 key={name}
                 onClick={() => selectMonth(index)}
                 size="sm"

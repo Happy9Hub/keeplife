@@ -9,9 +9,9 @@ type BadgeProps = React.HTMLAttributes<HTMLSpanElement> & {
 };
 
 const badgeVariants: Record<BadgeVariant, string> = {
-  secondary: "bg-zinc-100 text-zinc-700",
-  blue: "bg-blue-100 text-blue-700",
-  outline: "border border-zinc-200 text-zinc-600",
+  secondary: "bg-muted text-foreground",
+  blue: "bg-secondary text-secondary-foreground",
+  outline: "border border-border text-muted-foreground",
 };
 
 export function Badge({

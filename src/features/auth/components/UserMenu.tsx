@@ -35,12 +35,12 @@ export function UserMenu({ locale, userName, dict }: UserMenuProps) {
       <DropdownMenuTrigger asChild>
         <button
           type="button"
-          className="inline-flex h-10 items-center gap-2 rounded-md border border-zinc-200 bg-white px-3 text-sm font-medium text-zinc-950 transition-colors hover:bg-zinc-50"
+          className="inline-flex h-10 items-center gap-2 rounded-md border border-border bg-white px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted"
         >
           <span className="max-w-32 truncate">{userName}</span>
           <svg
             aria-hidden="true"
-            className="h-4 w-4 text-zinc-500"
+            className="h-4 w-4 text-muted-foreground"
             fill="none"
             stroke="currentColor"
             strokeWidth={2}
@@ -58,7 +58,7 @@ export function UserMenu({ locale, userName, dict }: UserMenuProps) {
           {dict.settings}
         </DropdownMenuItem>
         <DropdownMenuItem
-          className="text-red-600 hover:bg-red-50"
+          className="text-destructive hover:bg-destructive/10"
           onClick={handleSignOut}
         >
           {dict.signOut}

@@ -19,16 +19,16 @@ type AppHeaderProps = {
  */
 export function AppHeader({ lang, dictionary, userName, householdName }: AppHeaderProps) {
   return (
-    <header className="flex items-center justify-between border-b border-zinc-200 px-6 py-4">
+    <header className="flex items-center justify-between border-b border-border px-6 py-4">
       <div className="flex flex-col">
         <Link
-          className="text-sm font-semibold tracking-tight text-zinc-950 transition hover:opacity-80"
+          className="text-sm font-semibold tracking-tight text-foreground transition hover:opacity-80"
           href={`/${lang}`}
         >
           {dictionary.landing.nav.logo}
         </Link>
         {householdName ? (
-          <span className="text-xs text-zinc-500">
+          <span className="text-xs text-muted-foreground">
             {dictionary.dashboard.householdLabel}: {householdName}
           </span>
         ) : null}

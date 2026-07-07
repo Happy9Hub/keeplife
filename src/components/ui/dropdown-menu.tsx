@@ -97,7 +97,7 @@ export function DropdownMenuContent({
   return (
     <div
       className={cn(
-        "absolute top-11 z-50 min-w-40 rounded-md border border-zinc-200 bg-white p-1 text-zinc-950 shadow-md",
+        "absolute top-11 z-50 min-w-40 rounded-md border border-border bg-white p-1 text-foreground shadow-md",
         align === "end" ? "right-0" : "left-0",
         className,
       )}
@@ -121,7 +121,7 @@ export function DropdownMenuItem({
   return (
     <button
       className={cn(
-        "flex w-full cursor-pointer items-center rounded-sm px-3 py-2 text-left text-sm outline-none hover:bg-zinc-100",
+        "flex w-full cursor-pointer items-center rounded-sm px-3 py-2 text-left text-sm outline-none hover:bg-muted",
         className,
       )}
       onClick={() => {

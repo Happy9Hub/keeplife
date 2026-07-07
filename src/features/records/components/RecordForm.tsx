@@ -90,11 +90,11 @@ export function RecordForm({
   const isSubmitting = form.formState.isSubmitting;
 
   if (categories.length === 0) {
-    return <p className="text-sm text-zinc-500">{dict.noCategories}</p>;
+    return <p className="text-sm text-muted-foreground">{dict.noCategories}</p>;
   }
 
   if (paymentSources.length === 0) {
-    return <p className="text-sm text-zinc-500">{dict.noPaymentSources}</p>;
+    return <p className="text-sm text-muted-foreground">{dict.noPaymentSources}</p>;
   }
 
   async function onSubmit(values: CreateRecordValues) {
@@ -263,7 +263,7 @@ export function RecordForm({
         </Button>
 
         {errorMessage ? (
-          <p className="text-center text-sm font-medium text-red-600">{errorMessage}</p>
+          <p className="text-center text-sm font-medium text-destructive">{errorMessage}</p>
         ) : null}
       </form>
     </Form>

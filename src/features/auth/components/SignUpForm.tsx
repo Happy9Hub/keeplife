@@ -120,9 +120,9 @@ export function SignUpForm({ dict, isGoogleEnabled, lang }: SignUpFormProps) {
         </Button>
 
         <div className="flex items-center gap-3">
-          <div className="h-px flex-1 bg-zinc-200" />
-          <span className="text-xs font-medium text-zinc-400">{dict.or}</span>
-          <div className="h-px flex-1 bg-zinc-200" />
+          <div className="h-px flex-1 bg-border" />
+          <span className="text-xs font-medium text-muted-foreground">{dict.or}</span>
+          <div className="h-px flex-1 bg-border" />
         </div>
 
         <Form {...form}>
@@ -173,8 +173,8 @@ export function SignUpForm({ dict, isGoogleEnabled, lang }: SignUpFormProps) {
               <p
                 className={
                   statusMessage.tone === "success"
-                    ? "text-center text-sm font-medium text-emerald-700"
-                    : "text-center text-sm font-medium text-red-600"
+                    ? "text-center text-sm font-medium text-secondary-foreground"
+                    : "text-center text-sm font-medium text-destructive"
                 }
               >
                 {statusMessage.text}

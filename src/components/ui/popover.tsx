@@ -106,7 +106,7 @@ export function PopoverContent({
   return (
     <div
       className={cn(
-        "absolute top-11 z-50 rounded-md border border-zinc-200 bg-white p-3 text-zinc-950 shadow-md",
+        "absolute top-11 z-50 rounded-md border border-border bg-white p-3 text-foreground shadow-md",
         align === "end" ? "right-0" : "left-0",
         className,
       )}

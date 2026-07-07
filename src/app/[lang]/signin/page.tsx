@@ -41,7 +41,7 @@ export default async function SignInPage({
     <main className="flex min-h-screen items-center justify-center bg-white px-6 py-16">
       <div className="absolute left-4 top-4 sm:left-6 sm:top-6">
         <Link
-          className="text-lg font-bold tracking-tight text-zinc-950 transition hover:opacity-80"
+          className="text-lg font-bold tracking-tight text-foreground transition hover:opacity-80"
           href={`/${lang}`}
         >
           {dictionary.landing.nav.logo}
@@ -53,10 +53,10 @@ export default async function SignInPage({
 
       <section className="w-full max-w-md text-center">
         <div className="mb-8 space-y-3">
-          <h1 className="text-3xl font-semibold tracking-tight text-zinc-950">
+          <h1 className="text-3xl font-semibold tracking-tight text-foreground">
             {dictionary.auth.signIn}
           </h1>
-          <p className="text-sm leading-6 text-zinc-500">{dictionary.auth.welcome}</p>
+          <p className="text-sm leading-6 text-muted-foreground">{dictionary.auth.welcome}</p>
         </div>
 
         <SignInForm
@@ -65,10 +65,10 @@ export default async function SignInPage({
           isGoogleEnabled={isGoogleEnabled}
         />
 
-        <p className="mt-6 text-sm text-zinc-500">
+        <p className="mt-6 text-sm text-muted-foreground">
           {dictionary.auth.dontHaveAccount}{" "}
           <Link
-            className="font-medium text-zinc-950 underline-offset-4 hover:underline"
+            className="font-medium text-foreground underline-offset-4 hover:underline"
             href={`/${lang}/signup`}
           >
             {dictionary.auth.signUp}

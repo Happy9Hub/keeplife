@@ -113,7 +113,7 @@ export default async function RemindersPage({ params, searchParams }: RemindersP
 
       <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-10">
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <h1 className="text-2xl font-semibold tracking-tight text-zinc-950">
+          <h1 className="text-2xl font-semibold tracking-tight text-foreground">
             {dictionary.reminders.title}
           </h1>
           <AddReminderDialog
@@ -127,8 +127,8 @@ export default async function RemindersPage({ params, searchParams }: RemindersP
               className={cn(
                 "rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
                 statusFilter === filter
-                  ? "bg-zinc-100 text-zinc-950"
-                  : "text-zinc-500 hover:text-zinc-900",
+                  ? "bg-muted text-foreground"
+                  : "text-muted-foreground hover:text-foreground",
               )}
               href={`/${lang}/reminders?status=${filter}`}
               key={filter}
@@ -138,14 +138,14 @@ export default async function RemindersPage({ params, searchParams }: RemindersP
           ))}
         </div>
 
-        <div className="mt-4 rounded-md border border-zinc-200">
+        <div className="mt-4 rounded-md border border-border">
           {reminders.length === 0 ? (
-            <p className="px-4 py-10 text-center text-sm text-zinc-500">
+            <p className="px-4 py-10 text-center text-sm text-muted-foreground">
               {dictionary.reminders.empty}
             </p>
           ) : (
             <table className="w-full text-sm">
-              <thead className="border-b border-zinc-200 bg-zinc-50 text-left text-xs font-medium uppercase tracking-wide text-zinc-500">
+              <thead className="border-b border-border bg-muted text-left text-xs font-medium uppercase tracking-wide text-muted-foreground">
                 <tr>
                   <th className="px-4 py-3">{dictionary.reminders.columns.dueDate}</th>
                   <th className="px-4 py-3">{dictionary.reminders.columns.title}</th>
@@ -157,7 +157,7 @@ export default async function RemindersPage({ params, searchParams }: RemindersP
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-100">
+              <tbody className="divide-y divide-border">
                 {reminders.map((reminder) => {
                   const isOverdue =
                     reminder.status === "pending" && reminder.dueDate < todayStart;
@@ -165,22 +165,22 @@ export default async function RemindersPage({ params, searchParams }: RemindersP
                   return (
                     <tr key={reminder.id}>
                       <td className="whitespace-nowrap px-4 py-3">
-                        <span className={cn(isOverdue ? "font-medium text-red-600" : "text-zinc-500")}>
+                        <span className={cn(isOverdue ? "font-medium text-destructive" : "text-muted-foreground")}>
                           {dateFormatter.format(reminder.dueDate)}
                         </span>
                         {isOverdue ? (
-                          <span className="ml-2 text-xs font-medium text-red-600">
+                          <span className="ml-2 text-xs font-medium text-destructive">
                             {dictionary.reminders.overdue}
                           </span>
                         ) : null}
                       </td>
-                      <td className="px-4 py-3 font-medium text-zinc-950">{reminder.title}</td>
+                      <td className="px-4 py-3 font-medium text-foreground">{reminder.title}</td>
                       <td className="px-4 py-3">
                         <Badge variant="outline">
                           {dictionary.reminders.types[reminder.type]}
                         </Badge>
                       </td>
-                      <td className="px-4 py-3 text-zinc-600">
+                      <td className="px-4 py-3 text-muted-foreground">
                         {reminder.isRecurring && reminder.intervalMonths
                           ? dictionary.reminders.recurring.everyMonths.replace(
                               "{n}",

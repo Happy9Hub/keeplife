@@ -54,21 +54,21 @@ export function Dialog({
       <div
         aria-modal="true"
         className={cn(
-          "relative z-10 w-full max-w-md rounded-lg border border-zinc-200 bg-white p-6 shadow-lg",
+          "relative z-10 w-full max-w-md rounded-lg border border-border bg-white p-6 shadow-lg",
           className,
         )}
         role="dialog"
       >
         <div className="mb-4 flex items-start justify-between gap-4">
           <div>
-            <h2 className="text-lg font-semibold tracking-tight text-zinc-950">{title}</h2>
+            <h2 className="text-lg font-semibold tracking-tight text-foreground">{title}</h2>
             {description ? (
-              <p className="mt-1 text-sm text-zinc-500">{description}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{description}</p>
             ) : null}
           </div>
           <button
             aria-label="Close"
-            className="rounded-md p-1 text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900"
+            className="rounded-md p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             onClick={() => onOpenChange(false)}
             type="button"
           >

@@ -47,10 +47,10 @@ export default async function SettingsPage({ params }: SettingsPageProps) {
 
       <main className="flex flex-1 items-center justify-center px-6 py-16">
         <section className="mx-auto w-full max-w-2xl text-center">
-          <h1 className="text-3xl font-semibold tracking-tight text-zinc-950">
+          <h1 className="text-3xl font-semibold tracking-tight text-foreground">
             {dictionary.settings.title}
           </h1>
-          <p className="mt-4 text-sm leading-6 text-zinc-500">
+          <p className="mt-4 text-sm leading-6 text-muted-foreground">
             {dictionary.settings.comingSoon}
           </p>
         </section>

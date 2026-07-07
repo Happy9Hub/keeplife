@@ -114,9 +114,9 @@ export function SignInForm({
         </Button>
 
         <div className="flex items-center gap-3">
-          <div className="h-px flex-1 bg-zinc-200" />
-          <span className="text-xs font-medium text-zinc-400">{dict.or}</span>
-          <div className="h-px flex-1 bg-zinc-200" />
+          <div className="h-px flex-1 bg-border" />
+          <span className="text-xs font-medium text-muted-foreground">{dict.or}</span>
+          <div className="h-px flex-1 bg-border" />
         </div>
 
         <Form {...form}>
@@ -164,7 +164,7 @@ export function SignInForm({
             </Button>
 
             {statusMessage ? (
-              <p className="text-center text-sm font-medium text-red-600">
+              <p className="text-center text-sm font-medium text-destructive">
                 {statusMessage}
               </p>
             ) : null}

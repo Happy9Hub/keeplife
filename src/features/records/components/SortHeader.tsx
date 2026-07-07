@@ -13,8 +13,8 @@ export function SortHeader({ label, href, indicator }: SortHeaderProps) {
   return (
     <Link
       className={cn(
-        "inline-flex items-center gap-1 text-sm font-medium transition-colors hover:text-zinc-900",
-        indicator ? "text-zinc-900" : "text-zinc-500",
+        "inline-flex items-center gap-1 text-sm font-medium transition-colors hover:text-foreground",
+        indicator ? "text-foreground" : "text-muted-foreground",
       )}
       href={href}
       scroll={false}

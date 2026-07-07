@@ -26,14 +26,14 @@ export function buttonStyles({
   size?: ButtonSize;
 } = {}) {
   return cn(
-    "inline-flex items-center justify-center rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 disabled:pointer-events-none disabled:opacity-50",
+    "inline-flex items-center justify-center rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50",
     sizeStyles[size],
     variant === "ghost" &&
-      "bg-transparent hover:bg-zinc-100 hover:text-zinc-900",
+      "bg-transparent hover:bg-muted hover:text-foreground",
     variant === "outline" &&
-      "border border-zinc-200 bg-white text-zinc-950 hover:bg-zinc-50",
-    variant === "default" && "bg-zinc-900 text-white hover:bg-zinc-800",
-    variant === "destructive" && "bg-red-600 text-white hover:bg-red-700",
+      "border border-border bg-white text-foreground hover:bg-muted",
+    variant === "default" && "bg-primary text-primary-foreground hover:bg-primary/90",
+    variant === "destructive" && "bg-destructive text-white hover:bg-destructive/90",
     className,
   );
 }

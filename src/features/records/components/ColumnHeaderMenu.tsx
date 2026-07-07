@@ -43,8 +43,8 @@ export function ColumnHeaderMenu({
       <DropdownMenuTrigger asChild>
         <button
           className={cn(
-            "inline-flex items-center gap-1 text-sm font-medium transition-colors hover:text-zinc-900",
-            indicator ? "text-zinc-900" : "text-zinc-500",
+            "inline-flex items-center gap-1 text-sm font-medium transition-colors hover:text-foreground",
+            indicator ? "text-foreground" : "text-muted-foreground",
           )}
           type="button"
         >
@@ -63,7 +63,7 @@ export function ColumnHeaderMenu({
           >
             {item.label}
             {item.active ? (
-              <span aria-hidden="true" className="text-zinc-500">
+              <span aria-hidden="true" className="text-muted-foreground">
                 ✓
               </span>
             ) : null}

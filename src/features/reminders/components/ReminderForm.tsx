@@ -171,10 +171,10 @@ export function ReminderForm({
           name="isRecurring"
           render={({ field }) => (
             <FormItem>
-              <label className="flex items-center gap-2 text-sm font-medium text-zinc-900">
+              <label className="flex items-center gap-2 text-sm font-medium text-foreground">
                 <input
                   checked={field.value}
-                  className="h-4 w-4 rounded border-zinc-300 text-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900"
+                  className="h-4 w-4 rounded border-border text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   disabled={isSubmitting}
                   onBlur={field.onBlur}
                   onChange={(event) => field.onChange(event.target.checked)}
@@ -213,7 +213,7 @@ export function ReminderForm({
         </Button>
 
         {errorMessage ? (
-          <p className="text-center text-sm font-medium text-red-600">{errorMessage}</p>
+          <p className="text-center text-sm font-medium text-destructive">{errorMessage}</p>
         ) : null}
       </form>
     </Form>

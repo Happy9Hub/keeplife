@@ -16,7 +16,7 @@ export function Navbar({ dictionary, locale, isLoggedIn, userName }: NavbarProps
   return (
     <header className="fixed left-0 top-0 z-50 w-full border-b border-black/5 bg-white/75 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <h1 className="font-sans text-xl font-bold text-zinc-950">
+        <h1 className="font-sans text-xl font-bold text-foreground">
           <Link href={`/${locale}`} className="transition hover:opacity-80">
             {dictionary.landing.nav.logo}
           </Link>

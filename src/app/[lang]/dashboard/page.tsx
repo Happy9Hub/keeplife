@@ -49,13 +49,13 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
 
       <main className="flex flex-1 items-center justify-center px-6 py-16">
         <section className="mx-auto w-full max-w-2xl text-center">
-          <p className="text-sm font-medium text-zinc-500">
+          <p className="text-sm font-medium text-muted-foreground">
             {dictionary.dashboard.title}
           </p>
-          <h1 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-950">
+          <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">
             {dictionary.dashboard.greeting} {name}
           </h1>
-          <p className="mt-4 text-sm leading-6 text-zinc-500">
+          <p className="mt-4 text-sm leading-6 text-muted-foreground">
             {dictionary.dashboard.comingSoon}
           </p>
         </section>

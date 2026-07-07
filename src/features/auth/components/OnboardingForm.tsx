@@ -133,7 +133,7 @@ export function OnboardingForm({ dict, lang }: OnboardingFormProps) {
             </Button>
 
             {statusMessage ? (
-              <p className="text-center text-sm font-medium text-red-600">{statusMessage}</p>
+              <p className="text-center text-sm font-medium text-destructive">{statusMessage}</p>
             ) : null}
           </form>
         </Form>

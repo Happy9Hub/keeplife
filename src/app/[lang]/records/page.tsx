@@ -299,7 +299,7 @@ export default async function RecordsPage({ params, searchParams }: RecordsPageP
       <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-10">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-4">
-            <h1 className="text-2xl font-semibold tracking-tight text-zinc-950">
+            <h1 className="text-2xl font-semibold tracking-tight text-foreground">
               {dictionary.records.title}
             </h1>
             <MonthNavigator
@@ -328,8 +328,8 @@ export default async function RecordsPage({ params, searchParams }: RecordsPageP
           {summaryCards.map((card) => (
             <Card key={card.label}>
               <CardContent className="p-5">
-                <p className="text-sm text-zinc-500">{card.label}</p>
-                <p className="mt-2 text-2xl font-semibold tracking-tight text-zinc-950">
+                <p className="text-sm text-muted-foreground">{card.label}</p>
+                <p className="mt-2 text-2xl font-semibold tracking-tight text-foreground">
                   {formatAmount(card.value)}
                 </p>
               </CardContent>
@@ -337,14 +337,14 @@ export default async function RecordsPage({ params, searchParams }: RecordsPageP
           ))}
         </div>
 
-        <div className="mt-6 rounded-md border border-zinc-200">
+        <div className="mt-6 rounded-md border border-border">
           {records.length === 0 ? (
-            <p className="px-4 py-10 text-center text-sm text-zinc-500">
+            <p className="px-4 py-10 text-center text-sm text-muted-foreground">
               {hasActiveFilters ? dictionary.records.noResults : dictionary.records.empty}
             </p>
           ) : (
             <table className="w-full text-sm">
-              <thead className="border-b border-zinc-200 bg-zinc-50 text-left">
+              <thead className="border-b border-border bg-muted text-left">
                 <tr>
                   <th className="px-4 py-3">
                     <SortHeader
@@ -400,24 +400,24 @@ export default async function RecordsPage({ params, searchParams }: RecordsPageP
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-100">
+              <tbody className="divide-y divide-border">
                 {records.map((record) => (
                   <tr key={record.id}>
-                    <td className="whitespace-nowrap px-4 py-3 text-zinc-500">
+                    <td className="whitespace-nowrap px-4 py-3 text-muted-foreground">
                       {dateFormatter.format(record.recordDate)}
                     </td>
-                    <td className="px-4 py-3 font-medium text-zinc-950">{record.title}</td>
-                    <td className="px-4 py-3 text-zinc-600">{categoryLabel(record.category)}</td>
+                    <td className="px-4 py-3 font-medium text-foreground">{record.title}</td>
+                    <td className="px-4 py-3 text-muted-foreground">{categoryLabel(record.category)}</td>
                     <td className="px-4 py-3">
                       <Badge variant="outline">{dictionary.records.types[record.type]}</Badge>
                     </td>
-                    <td className="px-4 py-3 text-zinc-600">{record.paymentSource.name}</td>
+                    <td className="px-4 py-3 text-muted-foreground">{record.paymentSource.name}</td>
                     <td className="px-4 py-3">
                       <Badge variant={record.scope === "SHARED" ? "blue" : "secondary"}>
                         {dictionary.records.scopes[record.scope]}
                       </Badge>
                     </td>
-                    <td className="whitespace-nowrap px-4 py-3 text-right font-medium text-zinc-950">
+                    <td className="whitespace-nowrap px-4 py-3 text-right font-medium text-foreground">
                       {formatAmount(Number(record.amount))}
                     </td>
                     <td className="whitespace-nowrap px-4 py-3 text-right">

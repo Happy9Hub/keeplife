@@ -110,14 +110,14 @@ export function RecordRowActions({
     <div className="flex items-center justify-end gap-1">
       {hasReminder ? (
         <span aria-label={dict.reminderSet} title={dict.reminderSet}>
-          <Bell aria-hidden="true" className="h-4 w-4 text-zinc-400" />
+          <Bell aria-hidden="true" className="h-4 w-4 text-muted-foreground" />
         </span>
       ) : null}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <button
             aria-label={dict.actions}
-            className="flex h-8 w-8 items-center justify-center rounded-md text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900"
+            className="flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             type="button"
           >
             <svg
@@ -142,7 +142,7 @@ export function RecordRowActions({
             </DropdownMenuItem>
           )}
           <DropdownMenuItem
-            className="text-red-600 hover:bg-red-50"
+            className="text-destructive hover:bg-destructive/10"
             onClick={() => setDeleteOpen(true)}
           >
             {dict.delete}
@@ -189,9 +189,9 @@ export function RecordRowActions({
 
       <Dialog onOpenChange={setDeleteOpen} open={deleteOpen} title={dict.deleteTitle}>
         <div className="space-y-4">
-          <p className="text-sm text-zinc-600">{dict.deleteConfirm}</p>
+          <p className="text-sm text-muted-foreground">{dict.deleteConfirm}</p>
           {deleteError ? (
-            <p className="text-sm font-medium text-red-600">{deleteError}</p>
+            <p className="text-sm font-medium text-destructive">{deleteError}</p>
           ) : null}
           <div className="flex justify-end gap-2">
             <Button

@@ -93,7 +93,7 @@ export function ReminderRowActions({
         <DropdownMenuTrigger asChild>
           <button
             aria-label={dict.actions}
-            className="flex h-8 w-8 items-center justify-center rounded-md text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900"
+            className="flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             type="button"
           >
             <svg
@@ -121,7 +121,7 @@ export function ReminderRowActions({
             </DropdownMenuItem>
           ) : null}
           <DropdownMenuItem
-            className="text-red-600 hover:bg-red-50"
+            className="text-destructive hover:bg-destructive/10"
             onClick={() => setDeleteOpen(true)}
           >
             {dict.delete}
@@ -144,9 +144,9 @@ export function ReminderRowActions({
 
       <Dialog onOpenChange={setDeleteOpen} open={deleteOpen} title={dict.deleteTitle}>
         <div className="space-y-4">
-          <p className="text-sm text-zinc-600">{dict.deleteConfirm}</p>
+          <p className="text-sm text-muted-foreground">{dict.deleteConfirm}</p>
           {deleteError ? (
-            <p className="text-sm font-medium text-red-600">{deleteError}</p>
+            <p className="text-sm font-medium text-destructive">{deleteError}</p>
           ) : null}
           <div className="flex justify-end gap-2">
             <Button
