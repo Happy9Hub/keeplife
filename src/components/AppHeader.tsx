@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { AppNav } from "@/components/AppNav";
 import { LanguageSwitcher } from "@/components/landing/LanguageSwitcher";
+import { NotificationBell } from "@/features/dashboard/components/NotificationBell";
 import { UserMenu } from "@/features/auth/components/UserMenu";
 import type { Dictionary } from "@/lib/get-dictionary";
 import type { Locale } from "@/lib/i18n";
@@ -44,6 +45,18 @@ export function AppHeader({ lang, dictionary, userName, householdName }: AppHead
 
       <div className="flex items-center gap-3">
         <LanguageSwitcher locale={lang} />
+        <NotificationBell
+          dict={{
+            notificationsLabel: dictionary.dashboard.notifications,
+            title: dictionary.dashboard.feed.title,
+            empty: dictionary.dashboard.feed.empty,
+            markAllRead: dictionary.dashboard.feed.markAllRead,
+            spendingWarning: dictionary.dashboard.feed.spendingWarning,
+            moneyIn: dictionary.dashboard.feed.moneyIn,
+            subscriptionRenewal: dictionary.dashboard.feed.subscriptionRenewal,
+          }}
+          locale={lang}
+        />
         <UserMenu
           dict={{
             dashboard: dictionary.dashboard.title,

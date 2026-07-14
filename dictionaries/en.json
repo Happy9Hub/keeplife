@@ -46,7 +46,56 @@
     "greeting": "Welcome back,",
     "comingSoon": "Expense tracking and reminders are coming soon.",
     "householdLabel": "Household",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "hello": "Hi",
+    "notifications": "Notifications",
+    "assistant": {
+      "insight": "Heads up — delivery spending is about 40% above your usual. At this pace the budget runs out around the 22nd.",
+      "chips": {
+        "plan": "Plan it for me",
+        "details": "See details",
+        "remindBills": "Remind me of all bills"
+      },
+      "askPlaceholder": "Ask Nong Leaf anything…"
+    },
+    "metrics": {
+      "spentThisMonth": "Spent this month",
+      "vsLastMonth": "vs last month",
+      "billsDue": "Bills due in 7 days",
+      "billsCount": "{n} bills",
+      "billsEmpty": "No bills in the next 7 days — relax 🌱"
+    },
+    "chart": {
+      "title": "Spending",
+      "month": "This month",
+      "year12": "12 months",
+      "ytd": "YTD",
+      "week": "W"
+    },
+    "bills": {
+      "title": "Bills due soon",
+      "empty": "No upcoming bills 🎉",
+      "today": "Due today",
+      "tomorrow": "Due tomorrow",
+      "daysLeft": "{n} days left!"
+    },
+    "feed": {
+      "title": "Notifications",
+      "empty": "Nothing new",
+      "markAllRead": "Mark all read",
+      "spendingWarning": "You're spending a bit faster than usual this month",
+      "moneyIn": "Money in: {amount} 🎉",
+      "subscriptionRenewal": "A {amount} subscription renews soon"
+    },
+    "categorySpend": {
+      "title": "Spending by category",
+      "empty": "No spending yet this month"
+    },
+    "recentTransactions": {
+      "title": "Recent transactions",
+      "empty": "No transactions yet",
+      "viewAll": "View all →"
+    }
   },
   "settings": {
     "title": "Settings",

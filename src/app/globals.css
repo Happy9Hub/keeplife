@@ -20,6 +20,10 @@
 
   --destructive: 0 72% 59%; /* #E24B4A */
 
+  --warning: 36 86% 55%; /* amber #EF9F27 */
+  --warning-tint: 37 76% 92%; /* #FAEEDA */
+  --warning-foreground: 32 60% 28%;
+
   --muted: 30 25% 95%;
   --muted-foreground: 25 10% 45%;
 
@@ -41,6 +45,9 @@
   --color-accent: hsl(var(--accent));
   --color-accent-foreground: hsl(var(--accent-foreground));
   --color-destructive: hsl(var(--destructive));
+  --color-warning: hsl(var(--warning));
+  --color-warning-tint: hsl(var(--warning-tint));
+  --color-warning-foreground: hsl(var(--warning-foreground));
   --color-muted: hsl(var(--muted));
   --color-muted-foreground: hsl(var(--muted-foreground));
   --color-border: hsl(var(--border));
