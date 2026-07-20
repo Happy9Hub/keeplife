@@ -25,7 +25,9 @@
     "googleUnavailable": "Google sign-in is not configured yet.",
     "or": "OR",
     "successMessage": "Account created successfully.",
+    "invalidEmailOrPassword": "Invalid email or password.",
     "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?",
     "signInLink": "Sign in"
   },
   "onboarding": {
@@ -38,6 +40,190 @@
     "completeSetup": "Complete Setup",
     "submitting": "Completing setup...",
     "errorMessage": "Unable to complete setup."
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "greeting": "Welcome back,",
+    "comingSoon": "Expense tracking and reminders are coming soon.",
+    "householdLabel": "Household",
+    "signOut": "Sign out",
+    "hello": "Hi",
+    "notifications": "Notifications",
+    "assistant": {
+      "insight": "Heads up — delivery spending is about 40% above your usual. At this pace the budget runs out around the 22nd.",
+      "chips": {
+        "plan": "Plan it for me",
+        "details": "See details",
+        "remindBills": "Remind me of all bills"
+      },
+      "askPlaceholder": "Ask Nong Leaf anything…"
+    },
+    "metrics": {
+      "spentThisMonth": "Spent this month",
+      "vsLastMonth": "vs last month",
+      "billsDue": "Bills due in 7 days",
+      "billsCount": "{n} bills",
+      "billsEmpty": "No bills in the next 7 days — relax 🌱"
+    },
+    "chart": {
+      "title": "Spending",
+      "month": "This month",
+      "year12": "12 months",
+      "ytd": "YTD",
+      "week": "W"
+    },
+    "bills": {
+      "title": "Bills due soon",
+      "empty": "No upcoming bills 🎉",
+      "today": "Due today",
+      "tomorrow": "Due tomorrow",
+      "daysLeft": "{n} days left!"
+    },
+    "feed": {
+      "title": "Notifications",
+      "empty": "Nothing new",
+      "markAllRead": "Mark all read",
+      "spendingWarning": "You're spending a bit faster than usual this month",
+      "moneyIn": "Money in: {amount} 🎉",
+      "subscriptionRenewal": "A {amount} subscription renews soon"
+    },
+    "categorySpend": {
+      "title": "Spending by category",
+      "empty": "No spending yet this month"
+    },
+    "recentTransactions": {
+      "title": "Recent transactions",
+      "empty": "No transactions yet",
+      "viewAll": "View all →"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "comingSoon": "Account and household settings are coming soon."
+  },
+  "records": {
+    "navLabel": "Expenses",
+    "title": "Expenses",
+    "total": "Total",
+    "empty": "No expenses yet. Add your first one.",
+    "noResults": "No expenses match these filters.",
+    "all": "All",
+    "prevYear": "Previous year",
+    "nextYear": "Next year",
+    "summary": {
+      "totalSpent": "Total Spent",
+      "shared": "Shared Expenses",
+      "private": "Private Expenses"
+    },
+    "addExpense": "Add expense",
+    "editExpense": "Edit expense",
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "deleteTitle": "Delete expense",
+    "deleteConfirm": "Delete this expense? This can't be undone.",
+    "deleting": "Deleting...",
+    "deleteError": "Unable to delete the expense.",
+    "columns": {
+      "date": "Date",
+      "title": "Title",
+      "category": "Category",
+      "type": "Type",
+      "scope": "Scope",
+      "paymentSource": "Payment source",
+      "amount": "Amount",
+      "by": "Added by",
+      "actions": "Actions"
+    },
+    "types": {
+      "expense": "Expense",
+      "bill": "Bill",
+      "subscription": "Subscription",
+      "maintenance": "Maintenance"
+    },
+    "scopes": {
+      "PRIVATE": "Private",
+      "SHARED": "Shared"
+    },
+    "form": {
+      "title": "Title",
+      "titlePlaceholder": "e.g. Weekly groceries",
+      "amount": "Amount",
+      "amountPlaceholder": "0.00",
+      "category": "Category",
+      "paymentSource": "Payment source",
+      "type": "Type",
+      "scope": "Scope",
+      "date": "Date",
+      "submit": "Save expense",
+      "saveChanges": "Save changes",
+      "submitting": "Saving...",
+      "errorMessage": "Unable to save the expense.",
+      "noCategories": "This household has no categories yet, so expenses can't be added.",
+      "noPaymentSources": "This household has no payment sources yet, so expenses can't be added."
+    }
+  },
+  "reminders": {
+    "navLabel": "Reminders",
+    "title": "Reminders",
+    "add": "Add reminder",
+    "editReminder": "Edit reminder",
+    "createFromRecord": "Create reminder",
+    "edit": "Edit",
+    "delete": "Delete",
+    "markDone": "Mark done",
+    "dismiss": "Dismiss",
+    "cancel": "Cancel",
+    "deleteTitle": "Delete reminder",
+    "deleteConfirm": "Delete this reminder? This can't be undone.",
+    "deleting": "Deleting...",
+    "deleteError": "Unable to delete the reminder.",
+    "empty": "No reminders here yet.",
+    "overdue": "Overdue",
+    "reminderSet": "Reminder set",
+    "columns": {
+      "dueDate": "Due date",
+      "title": "Title",
+      "type": "Type",
+      "recurring": "Repeats",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "types": {
+      "maintenance": "Maintenance",
+      "passport": "Passport",
+      "bill": "Bill",
+      "subscription": "Subscription"
+    },
+    "statuses": {
+      "pending": "Pending",
+      "completed": "Completed",
+      "dismissed": "Dismissed"
+    },
+    "filters": {
+      "upcoming": "Upcoming",
+      "completed": "Completed",
+      "dismissed": "Dismissed",
+      "all": "All"
+    },
+    "recurring": {
+      "everyMonths": "Every {n} months",
+      "oneOff": "One-off"
+    },
+    "form": {
+      "title": "Title",
+      "titlePlaceholder": "e.g. Renew passport",
+      "type": "Type",
+      "dueDate": "Due date",
+      "isRecurring": "Repeats on a schedule",
+      "intervalMonths": "Every (months)",
+      "intervalMonthsPlaceholder": "e.g. 12",
+      "submit": "Save reminder",
+      "saveChanges": "Save changes",
+      "submitting": "Saving...",
+      "errorMessage": "Unable to save the reminder.",
+      "duplicate": "This expense already has a pending reminder."
+    }
   },
   "landing": {
     "nav": {

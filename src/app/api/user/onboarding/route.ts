@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 
 import { auth } from "@/auth";
+import { DEFAULT_CATEGORIES } from "@/features/household/default-categories";
+import { DEFAULT_PAYMENT_SOURCES } from "@/features/household/default-payment-sources";
 import { prisma } from "@/lib/prisma";
 
 type OnboardingBody = {
@@ -58,26 +60,51 @@ async function handleOnboarding(request: Request) {
         },
       });
 
+      await tx.category.createMany({
+        data: DEFAULT_CATEGORIES.map((category) => ({
+          ...category,
+          householdId: household.id,
+        })),
+      });
+
+      await tx.paymentSource.createMany({
+        data: DEFAULT_PAYMENT_SOURCES.map((name) => ({
+          name,
+          householdId: household.id,
+        })),
+      });
+
+      const membership = await tx.householdMember.create({
+        data: {
+          userId,
+          householdId: household.id,
+          role: "ADMIN",
+        },
+        select: {
+          id: true,
+          role: true,
+        },
+      });
+
       const user = await tx.user.update({
         where: {
           id: userId,
         },
         data: {
           name,
-          householdId: household.id,
-          role: "admin",
+          activeHouseholdId: household.id,
         },
         select: {
           id: true,
           name: true,
           email: true,
-          role: true,
-          householdId: true,
+          activeHouseholdId: true,
         },
       });
 
       return {
         household,
+        membership,
         user,
       };
     });

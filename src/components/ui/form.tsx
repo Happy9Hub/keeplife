@@ -59,7 +59,7 @@ export function FormLabel({ className, ...props }: React.LabelHTMLAttributes<HTM
 
   return (
     <label
-      className={cn("block w-full text-left text-sm font-medium text-zinc-900", error && "text-red-600", className)}
+      className={cn("block w-full text-left text-sm font-medium text-foreground", error && "text-destructive", className)}
       htmlFor={name}
       {...props}
     />
@@ -80,7 +80,7 @@ export function FormMessage({ className, ...props }: React.HTMLAttributes<HTMLPa
   }
 
   return (
-    <p className={cn("text-sm font-medium text-red-600", className)} {...props}>
+    <p className={cn("text-sm font-medium text-destructive", className)} {...props}>
       {String(error.message)}
     </p>
   );

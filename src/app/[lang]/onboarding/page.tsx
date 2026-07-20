@@ -27,7 +27,7 @@ export default async function OnboardingPage({ params }: OnboardingPageProps) {
     redirect(`/${lang}/signup`);
   }
 
-  if (session.user.householdId) {
+  if (session.user.activeHouseholdId) {
     redirect(`/${lang}/dashboard`);
   }
 
@@ -39,10 +39,10 @@ export default async function OnboardingPage({ params }: OnboardingPageProps) {
 
       <section className="w-full max-w-md text-center">
         <div className="mb-8 space-y-3">
-          <h1 className="text-3xl font-semibold tracking-tight text-zinc-950">
+          <h1 className="text-3xl font-semibold tracking-tight text-foreground">
             {dictionary.onboarding.title}
           </h1>
-          <p className="text-sm leading-6 text-zinc-500">
+          <p className="text-sm leading-6 text-muted-foreground">
             {dictionary.onboarding.subtitle}
           </p>
         </div>

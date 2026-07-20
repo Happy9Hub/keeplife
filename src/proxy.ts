@@ -7,7 +7,7 @@ const publicRouteSegments = new Set(["", "signup", "signin"]);
 
 type BetterAuthSessionResponse = {
   user?: {
-    householdId?: string | null;
+    activeHouseholdId?: string | null;
   } | null;
 } | null;
 
@@ -30,8 +30,8 @@ export async function proxy(request: NextRequest) {
 
   const session = await getSession(request);
   const isLoggedIn = Boolean(session?.user);
-  const householdId = session?.user?.householdId;
-  const isMissingHousehold = householdId == null || householdId === "";
+  const activeHouseholdId = session?.user?.activeHouseholdId;
+  const isMissingHousehold = activeHouseholdId == null || activeHouseholdId === "";
   const isOnboardingRoute =
     pathnameWithoutLocale === "/onboarding" ||
     pathnameWithoutLocale.startsWith("/onboarding/");
