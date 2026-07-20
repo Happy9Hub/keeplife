@@ -14,7 +14,7 @@ export function NongLeafCard({ dict }: { dict: NongLeafDictionary }) {
   const chips = [dict.chips.plan, dict.chips.details, dict.chips.remindBills];
 
   return (
-    <section className="rounded-[var(--radius)] bg-accent p-6 text-accent-foreground">
+    <section className="rounded-(--radius) bg-accent p-6 text-accent-foreground">
       <div className="flex items-start gap-4">
         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-2xl shadow-sm">
           🌿
